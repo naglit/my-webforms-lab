@@ -13,7 +13,7 @@ namespace Lab_WebForms.Form
         {
             string[] alphabets = { "a", "b", "c", "d", "e" };
 
-            (IEnumerable<string>)alphabets.GetEnumerator().JoinToString("-", (a => (a != "b")));
+            //(IEnumerable<string>)alphabets.GetEnumerator().JoinToString("-", (a => (a != "b")));
         }
     }
 }
