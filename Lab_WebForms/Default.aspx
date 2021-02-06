@@ -2,6 +2,10 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <p>Hello, world</p>
-
+    <p>a value in a property is wiped out at postback</p>
+    " <%= this.Message %> "
+    <p>while a value in a web control is not</p>
+    " <asp:Literal ID="lTest" runat="server" /> "
+    <asp:LinkButton ID="test" OnClick="test_Click" Text="testttt" runat="server" />
+    
 </asp:Content>
