@@ -127,6 +127,9 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Form\Cast.aspx" />
+    <Content Include="Form\ClickFromCodeBehind.aspx" />
+    <Content Include="Form\Output.aspx" />
     <Content Include="Form\VisibilitySwitching.aspx" />
     <Content Include="Form\Linq.aspx" />
     <Content Include="Global.asax" />
@@ -197,6 +200,27 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Cast.aspx.cs">
+      <DependentUpon>Cast.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form\Cast.aspx.designer.cs">
+      <DependentUpon>Cast.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form\ClickFromCodeBehind.aspx.cs">
+      <DependentUpon>ClickFromCodeBehind.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form\ClickFromCodeBehind.aspx.designer.cs">
+      <DependentUpon>ClickFromCodeBehind.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Output.aspx.cs">
+      <DependentUpon>Output.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form\Output.aspx.designer.cs">
+      <DependentUpon>Output.aspx</DependentUpon>
     </Compile>
     <Compile Include="Form\VisibilitySwitching.aspx.cs">
       <DependentUpon>VisibilitySwitching.aspx</DependentUpon>

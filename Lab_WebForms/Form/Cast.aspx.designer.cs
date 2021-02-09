@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Lab_WebForms
+namespace Lab_WebForms.Form
 {
 
 
-    public partial class _Default
+    public partial class Cast
     {
     }
 }
