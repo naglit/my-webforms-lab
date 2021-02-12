@@ -62,10 +62,12 @@
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=6.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.6.8.0\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Web.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -129,6 +131,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Form\Cast.aspx" />
     <Content Include="Form\ClickFromCodeBehind.aspx" />
+    <Content Include="Form\FuncClient.aspx" />
     <Content Include="Form\Output.aspx" />
     <Content Include="Form\VisibilitySwitching.aspx" />
     <Content Include="Form\Linq.aspx" />
@@ -215,6 +218,13 @@
     <Compile Include="Form\ClickFromCodeBehind.aspx.designer.cs">
       <DependentUpon>ClickFromCodeBehind.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Form\FuncClient.aspx.cs">
+      <DependentUpon>FuncClient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form\FuncClient.aspx.designer.cs">
+      <DependentUpon>FuncClient.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Form\Output.aspx.cs">
       <DependentUpon>Output.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -275,6 +285,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lab.Utility\Lab.Utility.csproj">
+      <Project>{0061D497-2E1C-432A-BD83-02060FD4B7A6}</Project>
+      <Name>Lab.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
