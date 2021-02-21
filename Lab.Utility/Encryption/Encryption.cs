@@ -25,7 +25,11 @@ namespace Lab.Utility.Encryption
 
                 //Display the original data and the decrypted data.
                 Console.WriteLine("Original:   {0}", original);
+                Console.WriteLine("IV:   {0}", string.Join(" ", aes.IV));
+                Console.WriteLine("Key:   {0}", string.Join(" ",aes.Key));
+                Console.WriteLine("Enctypted value:   {0}", string.Join(" ",encrypted));
                 Console.WriteLine("Round Trip: {0}", roundtrip);
+                Console.ReadKey();
             }
         }
         static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
@@ -47,14 +51,14 @@ namespace Lab.Utility.Encryption
                 aesAlg.IV = IV;
 
                 // Create an encryptor to perform the stream transform.
-                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+                var encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
 
                 // Create the streams used for encryption.
-                using (MemoryStream msEncrypt = new MemoryStream())
+                using (var msEncrypt = new MemoryStream())
                 {
-                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                    using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
                     {
-                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+                        using (var swEncrypt = new StreamWriter(csEncrypt))
                         {
                             //Write all data to the stream.
                             swEncrypt.Write(plainText);

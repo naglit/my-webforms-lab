@@ -1,9 +1,6 @@
 ﻿using Lab.Utility.Encryption;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections;
 
 namespace Lab_ConsoleApp
 {
@@ -11,7 +8,8 @@ namespace Lab_ConsoleApp
     {
         static void Main(string[] args)
         {
-            
+            //Encryption.EncryptInputParams(new Hashtable());
+            Experiment.Demo();
         }
     }
 }
