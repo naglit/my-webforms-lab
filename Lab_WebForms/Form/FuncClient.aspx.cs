@@ -9,7 +9,7 @@ namespace Lab_WebForms.Form
 		protected void Page_Load(object sender, EventArgs e)
 		{
 			var enc = new Encryption();
-			var bytes = enc.Testing("im testing GetBytes func");
+			//var bytes = enc.Testing("im testing GetBytes func");
 		}
 	}
 }
