@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Csharp\Csharp.cs" />
+    <Compile Include="DistributedComputing\DistributedComputing.cs" />
     <Compile Include="Encryption\Encryption.cs" />
     <Compile Include="JWT\JWTService.cs" />
     <Compile Include="JWT\JWTSetting.cs" />

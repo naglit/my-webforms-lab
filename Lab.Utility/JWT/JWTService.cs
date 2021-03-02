@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using Lab.Utility.JWT;
 using Microsoft.IdentityModel.Tokens;
 
@@ -82,6 +83,17 @@ namespace Lab.Utility
             var key = new SymmetricSecurityKey(Convert.FromBase64String(this.SecretKey));
             return key;
         }
+
+		/// <summary>
+		/// Generate a secret key
+		/// </summary>
+		/// <returns>secret key in string type</returns>
+		public string GenerateSecretKey()
+		{
+			var hmac = new HMACSHA256();
+			var key = Convert.ToBase64String(hmac.Key);
+			return key;
+		}
 
         /// <summary>
         ///  JWT Setting Class
