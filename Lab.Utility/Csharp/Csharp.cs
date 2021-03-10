@@ -21,8 +21,13 @@ namespace Lab.Utility.Csharp
 			Console.ReadKey();
 		}
 
-		public static void DivideElementsIntoBoxes()
+		public static void CheckIfToStringMethodCanConvertDBNullToEmptyString()
 		{
+			var dbNull = DBNull.Value;
+			Console.WriteLine(dbNull.ToString());
+			Console.WriteLine(dbNull.ToString().GetType());
+			Console.WriteLine("a".GetType());
+			Console.WriteLine((dbNull.ToString() == "").ToString());
 		}
 
 		public static void SubtractDateTime()

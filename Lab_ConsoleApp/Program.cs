@@ -13,7 +13,8 @@ namespace Lab_ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-			
+			Csharp.CheckIfToStringMethodCanConvertDBNullToEmptyString();
+			Console.ReadKey();
 		}
 	}
 }
