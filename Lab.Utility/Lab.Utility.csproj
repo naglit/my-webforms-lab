@@ -60,6 +60,7 @@
     <Compile Include="Encryption\Experiment.cs" />
     <Compile Include="JWT\JWTService.cs" />
     <Compile Include="JWT\JWTSetting.cs" />
+    <Compile Include="Multithreading\Multithreading.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

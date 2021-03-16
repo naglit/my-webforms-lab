@@ -7,7 +7,7 @@ namespace Lab.Utility.Encryption
 {
 	public class Encryption
 	{
-		public static void EncryptInputParams(Hashtable input)
+		public static void EncryptInputParams()
 		{
 			var original = "Here is some data to encrypt!";
 
@@ -23,8 +23,8 @@ namespace Lab.Utility.Encryption
 				var roundtrip = DecryptStringFromBytes_Aes(encrypted, aes.Key, aes.IV);
 
 				//Display the original data and the decrypted data.
-				Console.WriteLine("Original:   {0}", original);
-				Console.WriteLine("Round Trip: {0}", roundtrip);
+				//Console.WriteLine("Original:   {0}", original);
+				//Console.WriteLine("Round Trip: {0}", roundtrip);
 			}
 		}
 		public static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)

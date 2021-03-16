@@ -9,6 +9,11 @@ namespace Lab.Utility.Csharp
 {
 	public class Csharp
 	{
+		public static void TryStringBuilder(){
+			var sb = new StringBuilder();
+		}
+
+
 		public static void CheckIfTheElementisTheLast()
 		{
 			var numbers = new[] { 1, 2, 3, 4, 5 };
