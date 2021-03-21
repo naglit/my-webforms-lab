@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<SensitiveDataColumns>
+
+  <User>
+    <PhysicalColumnName>name</PhysicalColumnName>
+    <PhysicalColumnName>tel1</PhysicalColumnName>
+    <PhysicalColumnName>tel2</PhysicalColumnName>
+  </User>
+  <Order>
+    <PhysicalColumnName>owner_name</PhysicalColumnName>
+    <PhysicalColumnName>owner_tel1</PhysicalColumnName>
+    <PhysicalColumnName>owner_tel2</PhysicalColumnName>
+  </Order>
+  
+</SensitiveDataColumns>

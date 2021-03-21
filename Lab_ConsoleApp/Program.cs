@@ -1,7 +1,9 @@
-﻿using Lab.Utility.Csharp;
+﻿using Lab.Utility.Configuration;
+using Lab.Utility.Csharp;
 using Lab.Utility.Encryption;
 using Lab.Utility.Multithreading;
 using System;
+using System.Linq;
 
 namespace Lab_ConsoleApp
 {
@@ -9,8 +11,10 @@ namespace Lab_ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-			var iv = "KVwvlUiUaAs69FV1d3RENA==";
+
+			EncryptColumnData.IsSensitiveDataColumn();
 			Console.ReadLine();
+
 		}
 	}
 }
