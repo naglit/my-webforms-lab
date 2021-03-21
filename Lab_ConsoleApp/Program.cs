@@ -9,7 +9,8 @@ namespace Lab_ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-			Multithreading.EncryptWithMultithread();
+			var iv = "KVwvlUiUaAs69FV1d3RENA==";
+			Console.ReadLine();
 		}
 	}
 }

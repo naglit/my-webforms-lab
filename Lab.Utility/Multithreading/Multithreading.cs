@@ -11,6 +11,19 @@ namespace Lab.Utility.Multithreading
 {
 	public class Multithreading
 	{
+		public static void ExecuteInParallel(List<Task> tasks)
+		{
+			var t = Task.WhenAll(tasks);
+			try
+			{
+				t.Wait();
+			}
+			catch
+			{
+				Console.WriteLine("Parallel execution failed.");
+			}
+		}
+
 		public static void EncryptWithMultithread()
 		{
 			var watchForParallel = Stopwatch.StartNew();

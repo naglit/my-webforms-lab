@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\EncryptionSetting.cs" />
     <Compile Include="Csharp\Csharp.cs" />
     <Compile Include="DistributedComputing\DistributedComputing.cs" />
     <Compile Include="Encryption\Encryption.cs" />
@@ -70,6 +71,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Configuration\EncryptionSetting.xml" />
     <Content Include="JWT\JWTSetting.xml" />
   </ItemGroup>
   <ItemGroup />
