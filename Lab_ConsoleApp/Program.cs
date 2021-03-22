@@ -3,7 +3,9 @@ using Lab.Utility.Csharp;
 using Lab.Utility.Encryption;
 using Lab.Utility.Multithreading;
 using System;
+using System.Collections;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace Lab_ConsoleApp
 {
@@ -11,8 +13,13 @@ namespace Lab_ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-
-			EncryptColumnData.IsSensitiveDataColumn();
+			var input = new Hashtable
+			{
+				{ "name", "Ike" },
+				{ "age", 3 },
+			};
+			var tableName = "User";
+			EncryptColumnData.Encrypt(tableName, input);
 			Console.ReadLine();
 
 		}
