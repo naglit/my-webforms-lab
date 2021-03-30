@@ -58,6 +58,7 @@
     <Compile Include="Configuration\SensitiveDataColumnsSetting.cs" />
     <Compile Include="Csharp\Csharp.cs" />
     <Compile Include="DistributedComputing\DistributedComputing.cs" />
+    <Compile Include="Encryption\EncryptColumnData.cs" />
     <Compile Include="Encryption\Encryption.cs" />
     <Compile Include="Encryption\Experiment.cs" />
     <Compile Include="JWT\JWTService.cs" />

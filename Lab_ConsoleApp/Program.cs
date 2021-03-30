@@ -11,8 +11,9 @@ namespace Lab_ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-
-			EncryptColumnData.IsSensitiveDataColumn();
+			Console.WriteLine(37 + (16 / 16 + 1) * 16);
+			var a = SensitiveDataColumnsSetting.GetInstance;
+			Console.WriteLine(Encryption.GenerateIV());
 			Console.ReadLine();
 
 		}

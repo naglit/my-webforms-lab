@@ -47,10 +47,15 @@ namespace Lab.Utility.Encryption
 				var iv = Convert.FromBase64String("aaaaa");
 
 				// Put the cipher text into the deep copied input
-				deepCopiedInput[column] =  Encryption.Encrypt((string)input[column], iv);
+				deepCopiedInput[column] =  Encryption.Encrypt((string)input[column], "11111");
 			}
 		}
 
+		public static int GetRequiredSizeOfColumnValueForEncryptedDataStoring(int plainTextLength)
+        {
+			var size = 37 + (plainTextLength / 16 + 1) * 16;
+				return size;
+		}
 
 		public static bool IsSensitiveDataColumn(string tableName, string columnName)
 		{
