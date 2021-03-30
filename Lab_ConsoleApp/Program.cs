@@ -3,7 +3,9 @@ using Lab.Utility.Csharp;
 using Lab.Utility.Encryption;
 using Lab.Utility.Multithreading;
 using System;
+using System.Collections;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace Lab_ConsoleApp
 {
@@ -11,11 +13,7 @@ namespace Lab_ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine(37 + (16 / 16 + 1) * 16);
-			var a = SensitiveDataColumnsSetting.GetInstance;
-			Console.WriteLine(Encryption.GenerateIV());
-			Console.ReadLine();
-
+			Console.ReadLine()
 		}
 	}
 }
