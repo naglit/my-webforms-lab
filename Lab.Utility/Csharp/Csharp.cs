@@ -3,18 +3,47 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Lab.Utility.Csharp
 {
 	public class Csharp
 	{
+		public static void CreateCsv(){
+			//before your loop
+			var csv = new StringBuilder();
+
+			//in your loop
+			
+			//Suggestion made by KyleMit
+			var newLine = "rsi";
+			csv.AppendLine(newLine);
+
+			var nums = Enumerable.Range(1, 100).Select(i => i.ToString()).ToArray();
+			foreach (var num in nums)
+			{
+				csv.AppendLine(num);
+			}
+
+			//after your loop
+			var webClient = new WebClient();
+			var uri = new Uri(@"\\xxxx\yyyy\zzzz\\rsi.csv");
+			webClient.UploadFile(uri, @"C:\inetpub\wwwroot\rsi.csv");
+			//File.WriteAllText(@"rsi.csv", csv.ToString());
+		}
+
+		public static void DeleteFile()
+		{
+			File.Delete(@"rsi.csv");
+		}
+
 		public static void TryStringBuilder(){
 			var sb = new StringBuilder();
 		}
-
 
 		public static void CheckIfTheElementisTheLast()
 		{
@@ -48,6 +77,46 @@ namespace Lab.Utility.Csharp
 			Console.WriteLine(date2.AddDays(span.Days).ToString());
 			Console.WriteLine(new TimeSpan().Days.ToString());
 			Console.ReadKey();
+		}
+
+		public static void MakeDirectory(){
+			// Specify the directory you want to manipulate.
+			var path = @"\Desktop\Glenn\00_Temp\rsi.csv";
+			var pattern = @"(?:[a-zA-Z0-9]+\.[a-zA-Z0-9]+)";
+			var rx = new Regex(pattern);
+			var a = rx.Match(path);
+			var dirPath = rx.Replace(path, "");
+			try
+			{
+				// Determine whether the directory exists.
+				if (Directory.Exists(dirPath))
+				{
+					Console.WriteLine("That path exists already.");
+					return;
+				}
+
+				// Try to create the directory.
+				DirectoryInfo di = Directory.CreateDirectory(path);
+				Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime(path));
+
+				// Delete the directory.
+				di.Delete();
+				Console.WriteLine("The directory was deleted successfully.");
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine("The process failed: {0}", e.ToString());
+			}
+			finally { }
+		}
+
+		public static void AAA()
+		{
+			// Specify the directory you want to manipulate.
+			var path = @"~\Desktop\Glenn\00_Temp\rsi.csv";
+			var pattern = @"(?:[a-zA-Z0-9]+\.[a-zA-Z0-9]+)";
+			var rx = new Regex(pattern);
+			var a = rx.Match(path);
 		}
 	}
 }

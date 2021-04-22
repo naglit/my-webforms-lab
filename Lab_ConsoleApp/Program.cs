@@ -13,15 +13,8 @@ namespace Lab_ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-			var input = new Hashtable
-			{
-				{ "name", "Ike" },
-				{ "age", 3 },
-			};
-			var tableName = "User";
-			EncryptColumnData.Encrypt(tableName, input);
+			var a = EncryptionSetting.GetInstance;
 			Console.ReadLine();
-
 		}
 	}
 }

@@ -131,6 +131,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Form\Cast.aspx" />
     <Content Include="Form\ClickFromCodeBehind.aspx" />
+    <Content Include="Form\DropDownList.aspx" />
     <Content Include="Form\FuncClient.aspx" />
     <Content Include="Form\Output.aspx" />
     <Content Include="Form\VisibilitySwitching.aspx" />
@@ -217,6 +218,13 @@
     </Compile>
     <Compile Include="Form\ClickFromCodeBehind.aspx.designer.cs">
       <DependentUpon>ClickFromCodeBehind.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form\DropDownList.aspx.cs">
+      <DependentUpon>DropDownList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form\DropDownList.aspx.designer.cs">
+      <DependentUpon>DropDownList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Form\FuncClient.aspx.cs">
       <DependentUpon>FuncClient.aspx</DependentUpon>

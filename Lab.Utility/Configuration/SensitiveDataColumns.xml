@@ -12,5 +12,4 @@
     <PhysicalColumnName>owner_tel1</PhysicalColumnName>
     <PhysicalColumnName>owner_tel2</PhysicalColumnName>
   </Order>
-  
 </SensitiveDataColumns>

@@ -4,5 +4,9 @@
 
 	<!-- Key -->
 	<Key>s9X7Q6JGI4gavvWEjLzAQHfFcjVn3o+maWofANgKcFM=</Key>
+	<test>
+		<node name="aaaa" value="accc" asshole="scv"/>
+		<node name="aaava" value="accca"/>
+	</test>
 
 </EncryptionSetting>

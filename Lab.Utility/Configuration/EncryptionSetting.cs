@@ -43,6 +43,7 @@ namespace Lab.Utility.Configuration
 				var doc = XDocument.Load(m_settingFilePath);
 				this.Key = Convert.FromBase64String(
 					doc.Element(ELE_ENCRYPTION_SETTING).Element(ELE_KEY).Value);
+				var node = doc.Element(ELE_ENCRYPTION_SETTING).Element("test").Elements("node");
 			}
 			catch (Exception ex)
 			{
