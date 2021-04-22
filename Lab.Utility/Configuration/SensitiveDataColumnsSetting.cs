@@ -46,7 +46,17 @@ namespace Lab.Utility.Configuration
 				this.SensitiveDataColumns = doc.Element(ELE_SENSITIVE_DATA_COLUMNS)
 					.Elements().ToDictionary(
 						table => table.Name.ToString().Trim(),
-						table => table.Elements().Select(col => col.Value.ToString().Trim()).ToArray());
+						table => table.Elements()
+							.Where(col => (col.Name == "PhysicalColumnName"))
+							.Select(col => col.Value.ToString().Trim())
+							.ToArray());
+
+				this.Ivs = doc.Element(ELE_SENSITIVE_DATA_COLUMNS)
+					.Elements().ToDictionary(
+						table => table.Name.ToString().Trim(),
+						table => table.Elements()
+							.FirstOrDefault(col => (col.Name == "IV"))
+							.Value.ToString().Trim());
 			}
 			catch (Exception ex)
 			{
@@ -69,5 +79,7 @@ namespace Lab.Utility.Configuration
 		}
 		/// <summary>SensitiveDataColumns</summary>
 		public Dictionary<string, string[]> SensitiveDataColumns { get; private set; }
+		/// <summary>IVs (This practice is bad, but I do this for some reasons)</summary>
+		public Dictionary<string, string> Ivs { get; private set; }
 	}
 }

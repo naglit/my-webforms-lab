@@ -13,7 +13,6 @@ namespace Lab_ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-			var a = EncryptionSetting.GetInstance;
 			Console.ReadLine();
 		}
 	}

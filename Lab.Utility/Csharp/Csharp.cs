@@ -8,6 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Lab.Utility.Encryption;
 
 namespace Lab.Utility.Csharp
 {
@@ -117,6 +118,82 @@ namespace Lab.Utility.Csharp
 			var pattern = @"(?:[a-zA-Z0-9]+\.[a-zA-Z0-9]+)";
 			var rx = new Regex(pattern);
 			var a = rx.Match(path);
+		}
+
+		public static void Regex()
+        {
+			// Define a regular expression for repeated words.
+			var rx = new Regex(@"\b(?<word>\w+)\s+(\k<word>)\b",
+			  (RegexOptions.Compiled | RegexOptions.IgnoreCase));
+
+			// Define a test string.
+			var text = "The the quick brown fox  fox jumps over the lazy dog dog.";
+
+			// Find matches.
+			var matches = rx.Matches(text);
+
+			// Report the number of matches found.
+			Console.WriteLine("{0} matches found in:\n   {1}",
+							  matches.Count,
+							  text);
+
+			// Report on each match.
+			foreach (Match match in matches)
+			{
+				var groups = match.Groups;
+				Console.WriteLine("'{0}' repeated at positions {1} and {2}",
+								  groups["word"].Value,
+								  groups[0].Index,
+								  groups[1].Index);
+			}
+		}
+
+		public static void GetCaptureGroup()
+        {
+			var rx = new Regex(@"(?:!=ENC=!).+(?:!=IV=!)(.+)");
+			var match = rx.Match("!=ENC=!adasdas==!=IV=!asdasfv==");
+			
+			var group = match.Groups;
+			Console.WriteLine(group[1].Value);
+		}
+
+
+		public static void FindTableName()
+        {
+			var rx = new Regex(@"(?:INSERT|UPDATE)[\s\r\n\t]+([^\s\r\n\t].+_.+[^\s])");
+			var matches = rx.Matches(SqlStmt);
+			foreach(Match match in matches)
+            {
+				var groups = match.Groups;		
+			}
+        }
+
+		public static string GenerateRandomString(int length)
+		{
+			var random = new Random();
+			const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+			return new string(Enumerable.Repeat(chars, length)
+			  .Select(s => s[random.Next(s.Length)]).ToArray());
+		}
+
+		public static string SqlStmt 
+		{ 
+			get { 
+					return @"INSERT  t_Product
+									(
+										order_id,
+										shop_id,
+										product_id,
+										variation_id
+									)
+							VALUES	
+									(
+										@order_id,
+										@shop_id,
+										@product_id,
+										@variation_id
+									)"; 
+			} 
 		}
 	}
 }

@@ -1,7 +1,7 @@
 ﻿using Lab.Utility.Configuration;
 using System;
-using System.Collections;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 
 namespace Lab.Utility.Encryption
@@ -11,20 +11,30 @@ namespace Lab.Utility.Encryption
 		private static EncryptionSetting _setting = EncryptionSetting.GetInstance;
 		public static string _tempIV = "KVwvlUiUaAs69FV1d3RENA==";
 
+		public static void CheckTheLengthOffCipherText()
+		{
+			var nums = Enumerable.Range(0, 100);
+			foreach (var num in nums)
+			{
+				var ct = Encrypt(Csharp.Csharp.GenerateRandomString(num), GenerateIV());
+				Console.WriteLine("The length of plain text : The length of cipher text = {0} : {1}", num, ct.Length);
+			}
+		}
+
 		/// <summary>
 		/// Encrypt string value
 		/// </summary>
 		/// <param name="plainText">Plain text to be encrypted</param>
 		/// <param name="iv">Initial Vector</param>
 		/// <returns>Cipher Text</returns>
-		public static byte[] Encrypt(string plainText, byte[] iv)
+		public static byte[] Encrypt(string plainText, string iv)
 		{
 			if (string.IsNullOrEmpty(plainText) || (iv.Length == 0)) return new byte[] { };
 			
 			using (var aesAlg = new AesCryptoServiceProvider())
 			{
 				// Create an encryptor to perform the stream transform.
-				var encryptor = aesAlg.CreateEncryptor(_setting.Key, iv);
+				var encryptor = aesAlg.CreateEncryptor(_setting.Key, Convert.FromBase64String(iv));
 
 				// Create the streams used for encryption.
 				using (var msEncrypt = new MemoryStream())
@@ -49,7 +59,7 @@ namespace Lab.Utility.Encryption
 		/// <param name="cipherText">String value to be decrypted</param>
 		/// <param name="iv">Initial Vector</param>
 		/// <returns>Cipher Text</returns>
-		public static string Decrypt(byte[] cipherText, byte[] iv)
+		public static string Decrypt(string cipherText, string iv)
 		{
 			if ((cipherText.Length == 0) || (iv.Length == 0)) return "";
 
@@ -58,10 +68,10 @@ namespace Lab.Utility.Encryption
 			using (var aesAlg = new AesCryptoServiceProvider())
 			{
 				// Create a decryptor to perform the stream transform.
-				var decryptor = aesAlg.CreateDecryptor(_setting.Key, iv);
+				var decryptor = aesAlg.CreateDecryptor(_setting.Key, Convert.FromBase64String(iv));
 
 				// Create the streams used for decryption.
-				using (var msDecrypt = new MemoryStream(cipherText))
+				using (var msDecrypt = new MemoryStream(Convert.FromBase64String(cipherText)))
 				{
 					using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
 					{

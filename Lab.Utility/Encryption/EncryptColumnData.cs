@@ -51,13 +51,18 @@ namespace Lab.Utility.Encryption
 				if (isColumnWhichContainsSensitiveData == false) continue;
 
 				// Query the IV from DB
-				var iv = Convert.FromBase64String("3qrHIqOYFyurE4QtMrkS5A==");
+				var iv = "3qrHIqOYFyurE4QtMrkS5A==";
 
 				// Put the cipher text into the deep copied input
 				deepCopiedInput[column] =  Encryption.Encrypt((string)input[column], iv);
 			}
 		}
 
+		public static int GetRequiredSizeOfColumnValueForEncryptedDataStoring(int plainTextLength)
+		{
+			var size = 37 + (plainTextLength / 16 + 1) * 16;
+			return size;
+		}
 		public static void Decrypt(string queriedTable, Hashtable output)
 		{
 			// TODO: Create properies for keys and values
@@ -82,10 +87,10 @@ namespace Lab.Utility.Encryption
 				if (isColumnWhichContainsSensitiveData) continue;
 
 				// Query the IV from DB
-				var iv = Convert.FromBase64String("3qrHIqOYFyurE4QtMrkS5A==");
+				var iv = "3qrHIqOYFyurE4QtMrkS5A==";
 
 				// Put the cipher text into the deep copied input
-				deepCopiedInput[column] = Encryption.Decrypt((byte[])output[column], iv);
+				deepCopiedInput[column] = Encryption.Decrypt((string)output[column], iv);
 			}
 		}
 

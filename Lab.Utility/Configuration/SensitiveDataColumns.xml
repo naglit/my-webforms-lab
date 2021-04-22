@@ -3,11 +3,15 @@
 <SensitiveDataColumns>
 
   <User>
+    <!-- IVs (This practice is bad, but I do this for some reasons) -->
+    <IV>YHsJ5k+ufnKg/jO38a41YQ==</IV>
     <PhysicalColumnName>name</PhysicalColumnName>
     <PhysicalColumnName>tel1</PhysicalColumnName>
     <PhysicalColumnName>tel2</PhysicalColumnName>
   </User>
   <Order>
+    <!-- IVs (This practice is bad, but I do this for some reasons) -->
+    <IV>xeyNa4M5jIRPID7qiwIt/w==</IV>
     <PhysicalColumnName>owner_name</PhysicalColumnName>
     <PhysicalColumnName>owner_tel1</PhysicalColumnName>
     <PhysicalColumnName>owner_tel2</PhysicalColumnName>
