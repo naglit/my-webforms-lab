@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace Lab.Utility.Encryption
 {
@@ -219,37 +220,110 @@ namespace Lab.Utility.Encryption
 			return plaintext;
 		}
 
-		public static void DisplayRelationBetweenPlainAndEncryptedTextLengths(int arrayLength)
+		public static void TestSomeCasesForEncryptedTextLengthCalculator()
 		{
-			var iv = GenerateIV();
+			TestEncryptedTextLengthCalculator("あ");
+			TestEncryptedTextLengthCalculator("1234512");
+			TestEncryptedTextLengthCalculator("ddddddddddfvmascshfoiwht34uty298ysdjfkasjdhfot984dsjnkasnvksahoihkjsdfkasnknjfksjdbfikho203");
+			TestEncryptedTextLengthCalculator("ᨐ");
+			TestEncryptedTextLengthCalculator("ᨐᨐ");
+			TestEncryptedTextLengthCalculator("ᨐᨐᨐ");
+			TestEncryptedTextLengthCalculator("ᨐᨐᨐᨐ");
+			TestEncryptedTextLengthCalculator("ᨐᨐᨐᨐᨐ");
+			TestEncryptedTextLengthCalculator("𪛊");
+			TestEncryptedTextLengthCalculator("𪛊𪛊");
+			TestEncryptedTextLengthCalculator("𪛊𪛊𪛊");
+			TestEncryptedTextLengthCalculator("𪛊𪛊𪛊𪛊");
+			TestEncryptedTextLengthCalculator("𪛊𪛊𪛊𪛊𪛊");
+			TestEncryptedTextLengthCalculator("𪛊𪛊𪛊𪛊𪛊𪛊𪛊𪛊𪛊𪛊𪛊𪛊");
+			TestEncryptedTextLengthCalculator("012345678901𪛊𪛊𪛊𪛊𪛊");
+			// Surrogate Pair characters take 8 bytes for each
+			TestEncryptedTextLengthCalculator("12312r354353ᨐᨐ𪛊𪛊𪛊𪛊123𪛊𪛊𪛊𪛊𪛊");
+		}
 
+		/// <summary>
+		/// Test Calculation of Encrypted Text Length in AES CBC - 256
+		/// </summary>
+		/// <param name="plainText">plain text</param>
+		public static void TestEncryptedTextLengthCalculator(string plainText)
+		{
+			Console.WriteLine(plainText);
+
+			// write unicode
+			foreach (var ch in plainText)
+			{
+				break;
+				Console.WriteLine("U+{0:X4}", Convert.ToUInt16(ch));
+			}
+			
+			var plainTextSizeInBytes = Encoding.Unicode.GetByteCount(plainText);
+
+			// Calculation
+			var calculationResult = CalculateSizeOfEncryptedText(plainTextSizeInBytes);
+
+			// Encryption
+			var iv = GenerateIV();
+			var cipherTextInByteArray = Encrypt(plainText, iv);
+			var cipherText = Convert.ToBase64String(cipherTextInByteArray);
+
+			// Display Result
+			var result = (calculationResult == cipherText.Length) ? "TRUE" : "FALSE";
+			Console.WriteLine(
+				"{0}; calculation result: {1}, cipher text length: {2}{3}",
+				result,
+				calculationResult,
+				cipherText.Length,
+				Environment.NewLine);
+		}
+
+		/// <summary>
+		/// Compare the length of a plain text and the encrypted text
+		/// </summary>
+		/// <param name="arrayLength">length</param>
+		public static void ComparePlainAndEncryptedTextLengths(int arrayLength)
+		{
 			var strings = new string[arrayLength];
-			foreach (var i in Enumerable.Range(0, arrayLength - 1))
+			foreach (var i in Enumerable.Range(1, arrayLength))
 			{
 				// Generate Random String
-				var rc = Csharp.Csharp.GenerateRandomString(i + 1);
+				var plainText = Csharp.Csharp.GenerateRandomString(i);
+
+				//plainText += "𪛊";
+				Console.WriteLine(Environment.NewLine);
+				
+				var plainTextSizeInBytes = Encoding.Unicode.GetByteCount(plainText);
 
 				// Encrypt
-				var cipherTextInByteArray = Encrypt(rc, iv);
+				var iv = GenerateIV();
+				var cipherTextInByteArray = Encrypt(plainText, iv);
 				var cipherText = Convert.ToBase64String(cipherTextInByteArray);
-
+				
 				// Display the length of encrypted value
-				Console.WriteLine("{0} -> {1}", i + 1, cipherText.Length);
+				Console.WriteLine("{0}, {1}", plainTextSizeInBytes, cipherText.Length);
 			}
 		}
 
-		public static void CalculateNewSizeForEncryptedColumn(int originalSize)
+		public static int CalculateSizeOfEncryptedText(int originalSize)
 		{
-
-			var a = originalSize / 16;
-			if (originalSize == 0) return;
+			if (originalSize == 0) return 0; 
+			var a = originalSize / 32;
 
 			var d = a / 3;
 			var b = (a - d) * 20 + (d + 1) * 24;
 			// Formula
 			var e = 20 * a + 4 * d + 24;
 
-			Console.WriteLine("{0}, {1}", originalSize, e + 37);
+			Console.WriteLine("{0}, {1}", originalSize, e);
+			return e;
+		}
+
+		public static void FindEncryptedTextLenth(int inputSizeInBytes)
+		{
+				
+			long size = inputSizeInBytes;
+			
+			long postAesSize = inputSizeInBytes + (16- inputSizeInBytes % 16);
+			Console.WriteLine("{0}, {1}", inputSizeInBytes, postAesSize);
 		}
 	}
 }
