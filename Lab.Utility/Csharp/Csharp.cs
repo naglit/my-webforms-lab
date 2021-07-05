@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,6 +15,34 @@ namespace Lab.Utility.Csharp
 {
 	public class Csharp
 	{
+		public static void ImportCsv(string filePath)
+		{
+			using (var reader = new StreamReader(filePath, Encoding.GetEncoding("shift_jis")))
+			{
+				var listA = new List<string>();
+				var listB = new List<string>();
+				while (!reader.EndOfStream)
+				{
+					var line = reader.ReadLine();
+					var values = line.Split(',');
+
+					listA.Add(values[0]);
+					listB.Add(values[1]);
+				}
+			}
+		}
+
+		public static void SplitArray()
+		{
+			var ha = Enumerable.Range(0, 100).Select(i => new Hashtable { { i, i } }).ToArray();
+
+			var a = ha
+				.Select((x, i) => new { Index = i, Value = x })
+				.GroupBy(x => x.Index / 12)
+				.Select(x => x.Select(v => v.Value).ToList())
+				.ToList();
+		}
+
 		public static void CreateCsv(){
 			//before your loop
 			var csv = new StringBuilder();
@@ -166,7 +195,7 @@ namespace Lab.Utility.Csharp
             {
 				var groups = match.Groups;		
 			}
-        }
+		}
 
 		public static string GenerateRandomString(int length)
 		{

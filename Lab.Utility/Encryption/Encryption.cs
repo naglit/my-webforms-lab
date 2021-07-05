@@ -87,6 +87,10 @@ namespace Lab.Utility.Encryption
 			}
 		}
 		
+		/// <summary>
+		/// Generate a key
+		/// </summary>
+		/// <returns>key</returns>
 		public static string GenerateKey()
 		{
 			using (var aesAlg = new AesCryptoServiceProvider())
@@ -96,6 +100,10 @@ namespace Lab.Utility.Encryption
 			}
 		}
 		
+		/// <summary>
+		/// Generate an IV
+		/// </summary>
+		/// <returns>IV</returns>
 		public static string GenerateIV()
 		{
 			using (var aesAlg = new AesCryptoServiceProvider())
@@ -105,6 +113,9 @@ namespace Lab.Utility.Encryption
 			}
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public static void EncryptInputParams()
 		{
 			var original = "Here is some data to encrypt!";
@@ -206,6 +217,39 @@ namespace Lab.Utility.Encryption
 			}
 
 			return plaintext;
+		}
+
+		public static void DisplayRelationBetweenPlainAndEncryptedTextLengths(int arrayLength)
+		{
+			var iv = GenerateIV();
+
+			var strings = new string[arrayLength];
+			foreach (var i in Enumerable.Range(0, arrayLength - 1))
+			{
+				// Generate Random String
+				var rc = Csharp.Csharp.GenerateRandomString(i + 1);
+
+				// Encrypt
+				var cipherTextInByteArray = Encrypt(rc, iv);
+				var cipherText = Convert.ToBase64String(cipherTextInByteArray);
+
+				// Display the length of encrypted value
+				Console.WriteLine("{0} -> {1}", i + 1, cipherText.Length);
+			}
+		}
+
+		public static void CalculateNewSizeForEncryptedColumn(int originalSize)
+		{
+
+			var a = originalSize / 16;
+			if (originalSize == 0) return;
+
+			var d = a / 3;
+			var b = (a - d) * 20 + (d + 1) * 24;
+			// Formula
+			var e = 20 * a + 4 * d + 24;
+
+			Console.WriteLine("{0}, {1}", originalSize, e + 37);
 		}
 	}
 }
