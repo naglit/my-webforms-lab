@@ -303,18 +303,21 @@ namespace Lab.Utility.Encryption
 			}
 		}
 
-		public static int CalculateSizeOfEncryptedText(int originalSize)
+		/// <summary>
+		/// Calculate ci[her text size
+		/// </summary>
+		/// <param name="plainTextSizeInBytes">Plain text size in bytes</param>
+		/// <returns>cipher text size</returns>
+		public static int CalculateSizeOfEncryptedText(int plainTextSizeInBytes)
 		{
-			if (originalSize == 0) return 0; 
-			var a = originalSize / 32;
+			if (plainTextSizeInBytes == 0) return 0;
+			
+			var a = plainTextSizeInBytes / 32;
+			var b = a / 3;
+			var cipherTextSize = 20 * a + 4 * b + 24;
 
-			var d = a / 3;
-			var b = (a - d) * 20 + (d + 1) * 24;
-			// Formula
-			var e = 20 * a + 4 * d + 24;
-
-			Console.WriteLine("{0}, {1}", originalSize, e);
-			return e;
+			Console.WriteLine("{0} bytes -> string length: {1}", plainTextSizeInBytes, cipherTextSize);
+			return cipherTextSize;
 		}
 
 		public static void FindEncryptedTextLenth(int inputSizeInBytes)
