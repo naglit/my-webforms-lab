@@ -280,5 +280,27 @@ namespace Lab.Utility.Csharp
 				Console.WriteLine(dinosaur);
 			}
 		}
+
+		protected static IEnumerable<string> YeildReturnHeader()
+		{
+			var a = Enumerable.Range(0, 100);
+			yield return "header";
+
+			foreach (var i in a)
+			{
+				yield return i.ToString();
+			}
+		}
+
+		public static void ImplicitlyConvertNumberIntoCharSetNo()
+		{
+			GetDateOfBusinessDay(DateTime.Now, '2', true);
+		}
+
+		public static DateTime GetDateOfBusinessDay(DateTime baseDate, int businessDayCount, bool isGetAfterDate)
+		{
+			Console.WriteLine(businessDayCount);
+			return DateTime.Now;
+		}
 	}
 }

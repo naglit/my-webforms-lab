@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Web.Services;
 using System.Web.UI;
 
 namespace Lab_WebForms
@@ -7,7 +9,13 @@ namespace Lab_WebForms
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+			
+		}
+		[WebMethod]
+		public static bool TestJquery()
+		{
+			var a = 1;
+			return true;
 		}
 	}
 }
