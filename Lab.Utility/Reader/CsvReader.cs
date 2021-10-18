@@ -26,7 +26,7 @@ namespace Lab.Utility.Reader
 					var line = reader.ReadLine();
 					var row = line.Split(',');
 
-					if (this.HasHeader) continue;
+					if (this.HasHeader && (count == 1)) continue;
 
 					// Put the spilitted array data into the property of a generic type model
 					var model = new T();
