@@ -34,8 +34,8 @@ namespace Lab.Utility
 
 		public string FilePath { get; set; }
 		public string FileName { get { return Path.GetFileName(this.FilePath); } }
-		public DateTime CreationDate { get; set; }
-		public bool HasDateInFileName { get; set; }
+		private DateTime CreationDate { get; set; }
+		private bool HasDateInFileName { get; set; }
 		public bool Archived { get; set; }
 	}
 
