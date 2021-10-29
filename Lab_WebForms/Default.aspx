@@ -24,10 +24,7 @@
 
 	</script>
 	<asp:DropDownList id="ColorList"
-		AutoPostBack="True"
-		OnSelectedIndexChanged="Selection_Change"
-		runat="server"
-		SelectedValue="White">
+		runat="server">
 
 		<asp:ListItem Value="White"> White </asp:ListItem>
 		<asp:ListItem Value="Silver"> Silver </asp:ListItem>
