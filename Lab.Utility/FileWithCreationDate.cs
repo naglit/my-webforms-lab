@@ -5,13 +5,46 @@ using System.Linq;
 
 namespace Lab.Utility
 {
-	public class FileWithCreationDate
+	public class FileSweeper
 	{
-		public FileWithCreationDate(string filePath)
+		public FileSweeper()
+		{
+			//FileController.CreateDirectory(Constants.ACTIVE_DIR_PATH);
+		}
+
+		public void SweepFiles()
+		{
+			GetFilesToBeArchived();
+
+			SweepOut();
+		}
+
+		private void GetFilesToBeArchived()
+		{
+			var src = @"C:\inetpub\wwwroot\Batch\FileUpload\backup";
+
+			var filePaths = Directory.GetFiles(src);
+			this.FilesToBeArchived = filePaths.Select(path => new FileWithCreationDate(path)).Where(f => f.Archived).ToArray();
+		}
+
+		private void SweepOut()
+		{
+			// Archive
+			foreach (var file in this.FilesToBeArchived)
+			{
+				
+			}
+		}
+
+		private FileWithCreationDate[] FilesToBeArchived { get; set; }
+	}
+
+	internal class FileWithCreationDate
+	{
+		internal FileWithCreationDate(string filePath)
 		{
 			this.FilePath = filePath;
 			RetrieveDate();
-			this.Archived = (this.CreationDate <= DateTime.Today.AddDays(-26));
 		}
 
 		private void RetrieveDate()
@@ -32,29 +65,32 @@ namespace Lab.Utility
 			this.CreationDate = creationDate;
 		}
 
-		public string FilePath { get; set; }
-		public string FileName { get { return Path.GetFileName(this.FilePath); } }
+		public void Move ()
+		{
+			var dist = @"C:\inetpub\wwwroot\Batch\FileUpload\backup\archive";
+			var distFilePath = Path.Combine(dist, this.FileName);
+			Console.WriteLine("{0} => {1}", this.FilePath, distFilePath);
+			try
+			{
+				File.Move(this.FilePath, distFilePath);
+			}
+			catch (Exception e)
+			{
+				var errMsg = string.Format(
+					"ファイルの移動に失敗しました。既に同名のファイルが移動先に存在する可能性があります。filename={0}",
+					this.FileName);
+				Console.WriteLine(errMsg);
+			}
+			
+
+			Console.WriteLine("{0} => {1}", this.FilePath, Path.Combine(dist, this.FileName));
+			File.Move(this.FilePath, Path.Combine(dist, this.FileName));
+		}
+
+		internal string FilePath { get; set; }
+		internal string FileName { get { return Path.GetFileName(this.FilePath); } }
 		private DateTime CreationDate { get; set; }
 		private bool HasDateInFileName { get; set; }
-		public bool Archived { get; set; }
-	}
-
-	public class FileWithCreationDateClient
-	{
-		public static void CallFileWithCreationDate()
-		{
-			var src = @"C:\inetpub\wwwroot\";
-			var filePaths = Directory.GetFiles(src);
-			var filesWithCreationDate = filePaths.Select(path => new FileWithCreationDate(path)).ToArray();
-
-			// Archive
-			var dist = @"C:\inetpub\wwwroot\archive";
-			foreach (var file in filesWithCreationDate.Where(f => f.Archived))
-			{
-				Console.WriteLine("{0} => {1}", file.FilePath, Path.Combine(dist, file.FileName));
-				File.Move(file.FilePath, Path.Combine(dist, file.FileName));
-			}
-
-		}
+		public bool Archived { get { return (this.CreationDate <= DateTime.Today.AddDays(-26)); } }
 	}
 }

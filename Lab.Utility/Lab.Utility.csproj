@@ -55,6 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Asynchronous.cs" />
+    <Compile Include="Bitwise.cs" />
     <Compile Include="Configuration\EncryptionSetting.cs" />
     <Compile Include="Configuration\SensitiveDataColumnsSetting.cs" />
     <Compile Include="Csharp\Csharp.cs" />
