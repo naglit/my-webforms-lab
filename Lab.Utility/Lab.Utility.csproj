@@ -41,6 +41,18 @@
     <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.8.0\lib\net45\Microsoft.IdentityModel.Tokens.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.NetCore.1.3.1\lib\netstandard2.0\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.NetCore.4.0.3\lib\netstandard2.0\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.NetCore.4.0.3\lib\netstandard2.0\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.NetCore.4.0.3\lib\netstandard2.0\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IdentityModel" />
@@ -61,6 +73,11 @@
     <Compile Include="Configuration\SensitiveDataColumnsSetting.cs" />
     <Compile Include="Csharp\Csharp.cs" />
     <Compile Include="Csharp\Extension.cs" />
+    <Compile Include="DependencyInjection\BusinessLogic.cs" />
+    <Compile Include="DependencyInjection\DataAccessLayer.cs" />
+    <Compile Include="DependencyInjection\IProduct.cs" />
+    <Compile Include="DependencyInjection\DependencyInjection.cs" />
+    <Compile Include="DependencyInjection\TestDataAccessLayer.cs" />
     <Compile Include="DistributedComputing\DistributedComputing.cs" />
     <Compile Include="Encryption\EncryptColumnData.cs" />
     <Compile Include="Encryption\Encryption.cs" />
