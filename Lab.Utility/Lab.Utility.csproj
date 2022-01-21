@@ -61,6 +61,7 @@
     <Compile Include="Configuration\SensitiveDataColumnsSetting.cs" />
     <Compile Include="Csharp\Csharp.cs" />
     <Compile Include="Csharp\Extension.cs" />
+    <Compile Include="Csharp\Property.cs" />
     <Compile Include="DistributedComputing\DistributedComputing.cs" />
     <Compile Include="Encryption\EncryptColumnData.cs" />
     <Compile Include="Encryption\Encryption.cs" />

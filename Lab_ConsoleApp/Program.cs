@@ -9,4 +9,5 @@ namespace Lab_ConsoleApp
 			Console.ReadLine();
 		}
 	}
+	
 }

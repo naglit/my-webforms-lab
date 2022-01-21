@@ -302,5 +302,20 @@ namespace Lab.Utility.Csharp
 			Console.WriteLine(businessDayCount);
 			return DateTime.Now;
 		}
+
+		public static void TestProperty()
+		{
+			var item = new Item();
+		}
+	}
+
+	public class Item
+	{
+		public Point Location { get; set; }
+	}
+	public struct Point
+	{
+		public int X { get; set; }
+		public int Y { get; set; }
 	}
 }

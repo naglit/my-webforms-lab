@@ -27,5 +27,10 @@
             </div>
         </ItemTemplate>
     </asp:Repeater>
-
+    <tr ID="trCredential" Visible="<%# this.DisplayProductPrice %>" runat="server">
+	<td>
+		トップシークレット情報
+        <%#: this.Name %>
+	</td>
+</tr>
 </asp:Content>

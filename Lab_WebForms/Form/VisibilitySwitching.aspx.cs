@@ -35,7 +35,6 @@ namespace Lab_WebForms.Form
                 };
                 var products = new Product[] { shoes, cap, tshirts };
                 this.DisplayProductPrice = true;
-
                 rProduct.DataSource = products;
                 rProduct.DataBind();
             }
@@ -85,12 +84,12 @@ namespace Lab_WebForms.Form
 
             this.DisplayProductPrice = cbDisplayPrice.Checked;
 
-            DataBind();
-
         }
 
 
         protected bool IsLoginUser { get; set; }
         protected bool DisplayProductPrice { get; set; }
+
+        protected string Name { get; set; }
     }
 }
