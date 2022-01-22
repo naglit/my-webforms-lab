@@ -307,6 +307,40 @@ namespace Lab.Utility.Csharp
 		{
 			var item = new Item();
 		}
+
+		public static void DoubtSkip(){
+			var list = Enumerable.Range(0, 10);
+			foreach (var i in Enumerable.Range(0, 1000))
+			{
+				var s = new List<string>();
+				foreach (var j in list.Skip(1)) s.Add(j.ToString());
+				Console.WriteLine(string.Join(" ", s));
+			}
+		}
+		static string Aaa()
+		{
+			var strs = new[] { "1234", "123", "12" };
+			if (strs.Length == 0) return "";
+
+			var prefix = strs[0];
+			for (int i = 1; i < strs.Length; i++)
+			{
+				while (strs[i].IndexOf(prefix) != 0)
+				{
+					prefix = prefix.Substring(0, prefix.Length - 1);
+					if (string.IsNullOrEmpty(prefix)) return "";
+				}
+			}
+			return prefix;
+		}
+		public static void ParseTest()
+		{
+			var num = 101 / 100;
+			var a = 101;
+			var c = (a - num * 100) / 10;
+			var aaaa = 0f;
+			var d = float.TryParse("1099", out aaaa);
+		}
 	}
 
 	public class Item
