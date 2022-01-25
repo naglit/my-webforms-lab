@@ -341,6 +341,22 @@ namespace Lab.Utility.Csharp
 			var aaaa = 0f;
 			var d = float.TryParse("1099", out aaaa);
 		}
+
+		public void ExperimentRefType()
+		{
+			var list = new List<string>()
+			{
+				"a", "b", "c",
+			};
+
+			var newarray = new string[3];
+			newarray = list.ToArray();
+			newarray[0] = "d";
+			list.ForEach(Console.WriteLine);
+			foreach (var x in newarray) Console.WriteLine(x);
+		}
+
+
 	}
 
 	public class Item
