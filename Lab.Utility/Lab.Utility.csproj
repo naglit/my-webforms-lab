@@ -59,9 +59,9 @@
     <Compile Include="Bitwise.cs" />
     <Compile Include="Configuration\EncryptionSetting.cs" />
     <Compile Include="Configuration\SensitiveDataColumnsSetting.cs" />
-    <Compile Include="Csharp\Csharp.cs" />
-    <Compile Include="Csharp\Extension.cs" />
-    <Compile Include="Csharp\Property.cs" />
+    <Compile Include="CsharpExperiment\Csharp.cs" />
+    <Compile Include="CsharpExperiment\Extension.cs" />
+    <Compile Include="CsharpExperiment\Property.cs" />
     <Compile Include="DistributedComputing\DistributedComputing.cs" />
     <Compile Include="Encryption\EncryptColumnData.cs" />
     <Compile Include="Encryption\Encryption.cs" />
