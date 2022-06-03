@@ -1,4 +1,5 @@
 ﻿using System;
+using Lab.Utility.Csharp;
 
 namespace Lab_ConsoleApp
 {
@@ -6,13 +7,6 @@ namespace Lab_ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-			//unsafe{
-			//	fixed (char* p = &list[0].ToCharArray()[0]){
-			//		char* p2 = p;
-			//		Console.WriteLine(*p);
-			//	}
-			//}
-
 			Console.ReadLine();
 		}
 	}

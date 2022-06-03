@@ -368,4 +368,48 @@ namespace Lab.Utility.Csharp
 		public int X { get; set; }
 		public int Y { get; set; }
 	}
+
+	/// <summary>
+	/// a base class which has a property to be hidden by one of a derived class
+	/// </summary>
+	public class BaseClass
+	{
+		public string ConcealedProperty { get; set; } = "base";
+	}
+
+	/// <summary>
+	/// a derived class which has a property hiding one of the base class
+	/// </summary>
+	public class DerivedClass : BaseClass
+	{
+		public string ConcealedProperty { get; set; } = "derived";
+	}
+
+	/// <summary>
+	/// This is for research for C# Build Alert Caused by Hiding any property.
+	/// </summary>
+	public class HiddenPropertyCaller
+	{
+		public void CallHiddenProperty()
+		{
+			var baseClass = new BaseClass();
+			Console.WriteLine(baseClass.ConcealedProperty);
+
+			var derivedClass = new DerivedClass();
+			Console.WriteLine(derivedClass.ConcealedProperty);
+		}
+	}
+
+	public class PointerHandler
+	{
+		public void Main()
+		{
+			//unsafe{
+			//	fixed (char* p = &list[0].ToCharArray()[0]){
+			//		char* p2 = p;
+			//		Console.WriteLine(*p);
+			//	}
+			//}
+		}
+	}
 }
