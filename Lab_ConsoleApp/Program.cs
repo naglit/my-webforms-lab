@@ -1,4 +1,5 @@
 ﻿using System;
+using Lab.Utility;
 
 namespace Lab_ConsoleApp
 {
@@ -6,6 +7,7 @@ namespace Lab_ConsoleApp
 	{
 		static void Main(string[] args)
 		{
+			new Compress().CompressFile();
 			Console.ReadLine();
 		}
 	}
