@@ -70,6 +70,7 @@
     <Compile Include="EnumParse.cs" />
     <Compile Include="FileWithCreationDate.cs" />
     <Compile Include="Compress.cs" />
+    <Compile Include="Ftp.cs" />
     <Compile Include="IReadDataModel.cs" />
     <Compile Include="JWT\JWTService.cs" />
     <Compile Include="JWT\JWTSetting.cs" />

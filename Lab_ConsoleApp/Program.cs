@@ -7,7 +7,6 @@ namespace Lab_ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-			new Compress().CompressFile();
 			Console.ReadLine();
 		}
 	}
