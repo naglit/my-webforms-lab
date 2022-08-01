@@ -67,6 +67,7 @@
     <Compile Include="Encryption\EncryptColumnData.cs" />
     <Compile Include="Encryption\Encryption.cs" />
     <Compile Include="Encryption\Experiment.cs" />
+    <Compile Include="EnumParse.cs" />
     <Compile Include="FileWithCreationDate.cs" />
     <Compile Include="Compress.cs" />
     <Compile Include="IReadDataModel.cs" />
