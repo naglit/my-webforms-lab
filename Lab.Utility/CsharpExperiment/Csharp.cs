@@ -1,17 +1,13 @@
-﻿
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Lab.Utility.Encryption;
 
-namespace Lab.Utility.Csharp
+namespace Lab.Utility.CsharpExperiment
 {
 	public class Csharp
 	{

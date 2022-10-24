@@ -77,6 +77,7 @@
     <Compile Include="Compress.cs" />
     <Compile Include="Ftp.cs" />
     <Compile Include="IReadDataModel.cs" />
+    <Compile Include="JsonSerializationLab\JsonSerialization.cs" />
     <Compile Include="JWT\JWTService.cs" />
     <Compile Include="JWT\JWTSetting.cs" />
     <Compile Include="Model\SampleReadDataModel.cs" />

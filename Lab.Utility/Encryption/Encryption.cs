@@ -17,7 +17,7 @@ namespace Lab.Utility.Encryption
 			var nums = Enumerable.Range(0, 100);
 			foreach (var num in nums)
 			{
-				var ct = Encrypt(Csharp.Csharp.GenerateRandomString(num), GenerateIV());
+				var ct = Encrypt(CsharpExperiment.Csharp.GenerateRandomString(num), GenerateIV());
 				Console.WriteLine("The length of plain text : The length of cipher text = {0} : {1}", num, ct.Length);
 			}
 		}
@@ -286,7 +286,7 @@ namespace Lab.Utility.Encryption
 			foreach (var i in Enumerable.Range(1, arrayLength))
 			{
 				// Generate Random String
-				var plainText = Csharp.Csharp.GenerateRandomString(i);
+				var plainText = CsharpExperiment.Csharp.GenerateRandomString(i);
 
 				//plainText += "𪛊";
 				Console.WriteLine(Environment.NewLine);
