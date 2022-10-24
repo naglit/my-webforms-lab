@@ -1,5 +1,6 @@
 ﻿using System;
 using Lab.Utility;
+using Lab.Utility.CustomAttributes;
 
 namespace Lab_ConsoleApp
 {

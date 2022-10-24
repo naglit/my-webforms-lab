@@ -41,6 +41,9 @@
     <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.8.0\lib\net45\Microsoft.IdentityModel.Tokens.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IdentityModel" />
@@ -63,6 +66,8 @@
     <Compile Include="CsharpExperiment\Extension.cs" />
     <Compile Include="CsharpExperiment\Property.cs" />
     <Compile Include="CsharpExperiment\Reflection.cs" />
+    <Compile Include="CustomAttributes\CustomAttributeTesting.cs" />
+    <Compile Include="CustomAttributes\DtoClassForCustomAttributeDemo.cs" />
     <Compile Include="DistributedComputing\DistributedComputing.cs" />
     <Compile Include="Encryption\EncryptColumnData.cs" />
     <Compile Include="Encryption\Encryption.cs" />
