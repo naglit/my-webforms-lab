@@ -14,6 +14,7 @@ namespace Lab.Utility
 			HttpStatusCode statusCode;
 			HttpStatusCode.TryParse("500", out statusCode);
 			Console.WriteLine(statusCode);
+			Console.WriteLine((int)statusCode);
 			switch (statusCode)
 			{
 				case HttpStatusCode.OK:

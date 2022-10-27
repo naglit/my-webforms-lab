@@ -9,6 +9,7 @@ namespace Lab_ConsoleApp
 	{
 		static void Main(string[] args)
 		{
+			EnumParse.Main();
 			Console.ReadLine();
 		}
 	}
