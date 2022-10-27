@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,8 +18,16 @@ namespace Lab.Utility.JsonSerializationLab
 				{ "key2", "value2" },
 				{ "key3", "value3" },
 			};
-			var serializeDict= JsonConvert.SerializeObject(dict);
-			Console.WriteLine(serializeDict);
+			var hashtable = new Hashtable
+			{
+				{ "key1", "value1" },
+				{ "key2", "value2" },
+				{ "key3", "value3" },
+			};
+			var serializedDict= JsonConvert.SerializeObject(dict);
+			var serializedHashtable = JsonConvert.SerializeObject(hashtable);
+			Console.WriteLine(serializedDict);
+			Console.WriteLine(serializedHashtable);
 		}
 }
 }

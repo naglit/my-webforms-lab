@@ -9,10 +9,11 @@ namespace Lab.Utility
 {
 	public class EnumParse
 	{
-		public bool Main()
+		public static bool Main()
 		{
 			HttpStatusCode statusCode;
 			HttpStatusCode.TryParse("500", out statusCode);
+			Console.WriteLine(statusCode);
 			switch (statusCode)
 			{
 				case HttpStatusCode.OK:
