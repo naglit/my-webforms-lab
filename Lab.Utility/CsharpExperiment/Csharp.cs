@@ -338,7 +338,7 @@ namespace Lab.Utility.CsharpExperiment
 			var d = float.TryParse("1099", out aaaa);
 		}
 
-		public void ExperimentRefType()
+		public static void ExperimentRefType()
 		{
 			var list = new List<string>()
 			{
@@ -346,7 +346,7 @@ namespace Lab.Utility.CsharpExperiment
 			};
 
 			var newarray = new string[3];
-			newarray = list.ToArray();
+			list.CopyTo(newarray);
 			newarray[0] = "d";
 			list.ForEach(Console.WriteLine);
 			foreach (var x in newarray) Console.WriteLine(x);

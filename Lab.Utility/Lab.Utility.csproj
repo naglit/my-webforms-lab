@@ -65,9 +65,12 @@
     <Compile Include="CsharpExperiment\Csharp.cs" />
     <Compile Include="CsharpExperiment\Extension.cs" />
     <Compile Include="CsharpExperiment\Property.cs" />
+<<<<<<< Updated upstream
     <Compile Include="CsharpExperiment\Reflection.cs" />
     <Compile Include="CustomAttributes\CustomAttributeTesting.cs" />
     <Compile Include="CustomAttributes\DtoClassForCustomAttributeDemo.cs" />
+=======
+>>>>>>> Stashed changes
     <Compile Include="DistributedComputing\DistributedComputing.cs" />
     <Compile Include="Encryption\EncryptColumnData.cs" />
     <Compile Include="Encryption\Encryption.cs" />
