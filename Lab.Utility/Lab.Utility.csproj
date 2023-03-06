@@ -60,28 +60,29 @@
   <ItemGroup>
     <Compile Include="Asynchronous.cs" />
     <Compile Include="Bitwise.cs" />
-    <Compile Include="Configuration\EncryptionSetting.cs" />
-    <Compile Include="Configuration\SensitiveDataColumnsSetting.cs" />
-    <Compile Include="CsharpExperiment\Csharp.cs" />
-    <Compile Include="CsharpExperiment\Extension.cs" />
-    <Compile Include="CsharpExperiment\Property.cs" />
-    <Compile Include="CsharpExperiment\Reflection.cs" />
-    <Compile Include="CustomAttributes\CustomAttributeTesting.cs" />
-    <Compile Include="CustomAttributes\DtoClassForCustomAttributeDemo.cs" />
-    <Compile Include="DistributedComputing\DistributedComputing.cs" />
-    <Compile Include="Encryption\EncryptColumnData.cs" />
-    <Compile Include="Encryption\Encryption.cs" />
-    <Compile Include="Encryption\Experiment.cs" />
+    <Compile Include="MyConfiguration\EncryptionSetting.cs" />
+    <Compile Include="MyConfiguration\SensitiveDataColumnsSetting.cs" />
+    <Compile Include="MyCsharp\Csharp.cs" />
+    <Compile Include="MyCsharp\Extension.cs" />
+    <Compile Include="MyCsharp\MyLinq.cs" />
+    <Compile Include="MyCsharp\Property.cs" />
+    <Compile Include="MyCsharp\Reflection.cs" />
+    <Compile Include="MyCustomAttribute\CustomAttributeTesting.cs" />
+    <Compile Include="MyCustomAttribute\DtoClassForCustomAttributeDemo.cs" />
+    <Compile Include="MyDistributedComputing\DistributedComputing.cs" />
+    <Compile Include="MyEncryption\EncryptColumnData.cs" />
+    <Compile Include="MyEncryption\Encryption.cs" />
+    <Compile Include="MyEncryption\Experiment.cs" />
     <Compile Include="EnumParse.cs" />
     <Compile Include="FileWithCreationDate.cs" />
     <Compile Include="Compress.cs" />
     <Compile Include="Ftp.cs" />
     <Compile Include="IReadDataModel.cs" />
-    <Compile Include="JsonSerializationLab\JsonSerialization.cs" />
-    <Compile Include="JWT\JWTService.cs" />
-    <Compile Include="JWT\JWTSetting.cs" />
-    <Compile Include="Model\SampleReadDataModel.cs" />
-    <Compile Include="Multithreading\Multithreading.cs" />
+    <Compile Include="MyJsonSerialization\JsonSerialization.cs" />
+    <Compile Include="MyJWT\JWTService.cs" />
+    <Compile Include="MyJWT\JWTSetting.cs" />
+    <Compile Include="MyModel\SampleReadDataModel.cs" />
+    <Compile Include="MyMultithreading\Multithreading.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reader\CsvReader.cs" />
   </ItemGroup>
@@ -92,9 +93,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Configuration\EncryptionSetting.xml" />
-    <Content Include="Configuration\SensitiveDataColumns.xml" />
-    <Content Include="JWT\JWTSetting.xml" />
+    <Content Include="MyConfiguration\EncryptionSetting.xml" />
+    <Content Include="MyConfiguration\SensitiveDataColumns.xml" />
+    <Content Include="MyJWT\JWTSetting.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using Lab.Utility;
-using Lab.Utility.CustomAttributes;
-using Lab.Utility.JsonSerializationLab;
+using Lab.Utility.Csharp;
+using Lab.Utility.CsharpExperiment;
+using Lab.Utility.MyCsharp;
 
 namespace Lab_ConsoleApp
 {
@@ -9,7 +10,7 @@ namespace Lab_ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-			EnumParse.Main();
+			MyLinq.Main();
 			Console.ReadLine();
 		}
 	}
