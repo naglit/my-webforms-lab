@@ -83,6 +83,7 @@
     <Compile Include="MyJWT\JWTSetting.cs" />
     <Compile Include="MyModel\SampleReadDataModel.cs" />
     <Compile Include="MyMultithreading\Multithreading.cs" />
+    <Compile Include="MyRestApi\ApiService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reader\CsvReader.cs" />
   </ItemGroup>
