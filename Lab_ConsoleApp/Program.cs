@@ -3,6 +3,7 @@ using Lab.Utility;
 using Lab.Utility.Csharp;
 using Lab.Utility.CsharpExperiment;
 using Lab.Utility.MyCsharp;
+using Lab.Utility.MyCustomAttribute;
 
 namespace Lab_ConsoleApp
 {
@@ -10,7 +11,7 @@ namespace Lab_ConsoleApp
 	{
 		static void Main(string[] args)
 		{
-			MyLinq.Main();
+			CustomAttributeTesting.Test(new DtoClassForCustomAttributeDemo("0","name!"));
 			Console.ReadLine();
 		}
 	}
