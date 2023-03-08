@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Asynchronous.cs" />
     <Compile Include="Bitwise.cs" />
+    <Compile Include="MyAsync\Asynchronous.cs" />
     <Compile Include="MyConfiguration\EncryptionSetting.cs" />
     <Compile Include="MyConfiguration\SensitiveDataColumnsSetting.cs" />
     <Compile Include="MyCsharp\Csharp.cs" />
