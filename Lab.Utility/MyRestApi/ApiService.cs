@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http;
 using System.Text;
@@ -17,69 +18,82 @@ namespace Lab.Utility.MyRestApi
 		public void Test()
 		{
 			// GET
-			var apiGetRequestParams = new ApiRequestParams(
+			var getResponse = HttpGet(
+				"https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&timezone=Asia%2FTokyos",
 				new MediaTypeWithQualityHeaderValue("application/x-www-form-urlencoded"),
-				"",
-				"https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&timezone=Asia%2FTokyo");
-			HttpGet(apiGetRequestParams).GetAwaiter().GetResult();
+				"{\"username\":\"abc\",\"password\":\"abc\"}",
+				Encoding.UTF8);
 
 			// POST
-			var apiPostRequestParams = new ApiRequestParams(
-				new MediaTypeWithQualityHeaderValue("application/json"),
-				authorization: "",
-				url: "https://api.restful-api.dev/objects",
-				content: "{\"username\":\"abc\",\"password\":\"abc\"}");
-
-			var a = HttpPost(apiPostRequestParams);
+			var postResponse = HttpPost(
+				"https://api.restful-api.dev/objects",
+				"{\"username\":\"abc\",\"password\":\"abc\"}",
+				Encoding.UTF8,
+				"application/json");
 		}
 
-		public async Task HttpGet(ApiRequestParams parameters)
+		public async Task<ApiResponseBody> HttpGet(
+			string url,
+			MediaTypeWithQualityHeaderValue mediaType,
+			string content,
+			Encoding encoding)
 		{
 			// Add an Accept header for JSON format.
 			s_httpClient.DefaultRequestHeaders.Accept.Clear();
-			s_httpClient.DefaultRequestHeaders.Accept.Add(parameters.MediaTypeWithQualityHeaderValue);
+			s_httpClient.DefaultRequestHeaders.Accept.Add(mediaType);
 
 			// Get data response
-			var response = s_httpClient.GetAsync(parameters.Url).Result;
-			if (response.IsSuccessStatusCode)
+			var response = new HttpResponseMessage();
+			try
 			{
-				// Parse the response body
-				var dataObjects = response.Content.ReadAsStringAsync().Result;
-				foreach (var d in dataObjects)
-				{
-				}
+				response = await s_httpClient.GetAsync(url);
 			}
-			else
+			catch (Exception ex)
 			{
-				Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+				// Log
 			}
+			var responseBody = new ApiResponseBody(
+				response.StatusCode,
+				response.Content?.ReadAsStringAsync().Result,
+				response.ReasonPhrase);
+			return responseBody;
 		}
 
-		public async Task HttpPost(ApiRequestParams parameters)
+		public async Task<ApiResponseBody> HttpPost(string url, string content, Encoding encoding, string contentType)
 		{
 			s_httpClient.DefaultRequestHeaders.Accept.Clear();
-			var stringContent = new StringContent(parameters.Content, Encoding.UTF8, "application/json");
-			var response = await s_httpClient.PostAsync(parameters.Url, stringContent);
+
+			var stringContent = new StringContent(content, encoding, contentType);
+			// Get data response
+			var response = new HttpResponseMessage();
+			try
+			{
+				response = await s_httpClient.PostAsync(url, stringContent);
+			}
+			catch (Exception ex)
+			{
+				// Log
+			}
 			response.EnsureSuccessStatusCode();
-
-			// return URI of the created resource.
+			var responseBody = new ApiResponseBody(
+				response.StatusCode,
+				response.Content?.ReadAsStringAsync().Result,
+				response.ReasonPhrase);
+			return responseBody;
 		}
-	
-}
+	}
 
-	public class ApiRequestParams
+	public class ApiResponseBody
 	{
-		public ApiRequestParams(MediaTypeWithQualityHeaderValue mediaTypeWithQualityHeaderValue, string authorization, string url, string content = "")
+		public ApiResponseBody(HttpStatusCode statusCode, string content, string reasonPhrase)
 		{
-			this.MediaTypeWithQualityHeaderValue= mediaTypeWithQualityHeaderValue;
-			this.Authorization = authorization;
-			this.Url = url;
+			this.StatusCode = statusCode;
 			this.Content = content;
+			this.ReasonPhrase = reasonPhrase;
 		}
 
-		public MediaTypeWithQualityHeaderValue MediaTypeWithQualityHeaderValue { get; }
-		public string Authorization { get; }
-		public string Url { get; }
+		public HttpStatusCode StatusCode { get; }
 		public string Content { get; }
+		public string ReasonPhrase { get; }
 	}
 }
