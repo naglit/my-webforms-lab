@@ -12,28 +12,38 @@ namespace Lab.Utility.MyXmlSerialization
 			{
 				var xns = new XmlSerializerNamespaces();
 				xns.Add("", "");
-				var req = new Req();
+				var req = new Req()
+				{
+					Target = new Target("000001", new[] { "name", "id", "gender" }),
+					SellerId = "sellerId!!",
+				};
 				var serializer = new XmlSerializer(req.GetType());
-				serializer.Serialize(stringwriter, new Req(), xns);
+				serializer.Serialize(stringwriter, req, xns);
 				Console.WriteLine(stringwriter.ToString());
 			}
 		}
 	}
 
+	[XmlRoot("Req")]
 	public class Req
 	{
-		public Target Target { get; set; } = new Target();
+		[XmlElement("Target")]
+		public Target Target { get; set; }
+		[XmlElement("SellerId")]
+		public string SellerId { get; set; }
 	}
 
 	public class Target
 	{
-		public Target()
+		public Target(){}
+		public Target(string orderId, string[] fields)
 		{
-			this.Field = string.Join(",", this.Feilds);
+			this.OrderId = orderId;
+			this.Field = string.Join(",", fields);
 		}
-		public string OrderId { get; set; } = "00000001";
+		[XmlElement("OrderId")]
+		public string OrderId { get; set; }
+		[XmlElement("Field")]
 		public string Field { get; set; }
-		[XmlIgnore]
-		public string[] Feilds { get; set; } = { "name", "id", "gender" };
 	}
 }
