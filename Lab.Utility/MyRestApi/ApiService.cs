@@ -23,6 +23,7 @@ namespace Lab.Utility.MyRestApi
 				new MediaTypeWithQualityHeaderValue("application/x-www-form-urlencoded"),
 				"{\"username\":\"abc\",\"password\":\"abc\"}",
 				Encoding.UTF8);
+			var getResult = getResponse.GetAwaiter().GetResult();
 
 			// POST
 			var postResponse = HttpPost(
@@ -30,6 +31,8 @@ namespace Lab.Utility.MyRestApi
 				"{\"username\":\"abc\",\"password\":\"abc\"}",
 				Encoding.UTF8,
 				"application/json");
+			var postResult = postResponse.GetAwaiter().GetResult();
+
 		}
 
 		public async Task<ApiResponseBody> HttpGet(
