@@ -7,7 +7,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Lab.Utility.CsharpExperiment
+namespace Lab.Utility.MyCsharp
 {
 	public class Csharp
 	{
@@ -30,21 +30,27 @@ namespace Lab.Utility.CsharpExperiment
 
 		public static void SplitArray()
 		{
-			var ha = Enumerable.Range(0, 100).Select(i => new Hashtable { { i, i } }).ToArray();
+			var ha = Enumerable.Range(0, 100).Select(
+				i => new Hashtable
+				{
+					{ i, i }
+				}).ToArray();
 
-			var a = ha
-				.Select((x, i) => new { Index = i, Value = x })
-				.GroupBy(x => x.Index / 12)
-				.Select(x => x.Select(v => v.Value).ToList())
-				.ToList();
+			var a = ha.Select(
+				(x, i) => new
+				{
+					Index = i,
+					Value = x
+				}).GroupBy(x => x.Index / 12).Select(x => x.Select(v => v.Value).ToList()).ToList();
 		}
 
-		public static void CreateCsv(){
+		public static void CreateCsv()
+		{
 			//before your loop
 			var csv = new StringBuilder();
 
 			//in your loop
-			
+
 			//Suggestion made by KyleMit
 			var newLine = "rsi";
 			csv.AppendLine(newLine);
@@ -67,17 +73,19 @@ namespace Lab.Utility.CsharpExperiment
 			File.Delete(@"rsi.csv");
 		}
 
-		public static void TryStringBuilder(){
+		public static void TryStringBuilder()
+		{
 			var sb = new StringBuilder();
 		}
 
 		public static void CheckIfTheElementisTheLast()
 		{
 			var numbers = new[] { 1, 2, 3, 4, 5 };
-			foreach(var number in numbers)
+			foreach (var number in numbers)
 			{
 				numbers.Last();
 			}
+
 			var numberInRange = Enumerable.Range(1, 29).ToArray();
 			Console.WriteLine(numbers.Last().ToString());
 			Console.ReadKey();
@@ -105,7 +113,8 @@ namespace Lab.Utility.CsharpExperiment
 			Console.ReadKey();
 		}
 
-		public static void MakeDirectory(){
+		public static void MakeDirectory()
+		{
 			// Specify the directory you want to manipulate.
 			var path = @"\Desktop\Glenn\00_Temp\rsi.csv";
 			var pattern = @"(?:[a-zA-Z0-9]+\.[a-zA-Z0-9]+)";
@@ -133,7 +142,9 @@ namespace Lab.Utility.CsharpExperiment
 			{
 				Console.WriteLine("The process failed: {0}", e.ToString());
 			}
-			finally { }
+			finally
+			{
+			}
 		}
 
 		public static void AAA()
@@ -146,10 +157,9 @@ namespace Lab.Utility.CsharpExperiment
 		}
 
 		public static void Regex()
-        {
+		{
 			// Define a regular expression for repeated words.
-			var rx = new Regex(@"\b(?<word>\w+)\s+(\k<word>)\b",
-			  (RegexOptions.Compiled | RegexOptions.IgnoreCase));
+			var rx = new Regex(@"\b(?<word>\w+)\s+(\k<word>)\b", (RegexOptions.Compiled | RegexOptions.IgnoreCase));
 
 			// Define a test string.
 			var text = "The the quick brown fox  fox jumps over the lazy dog dog.";
@@ -158,53 +168,53 @@ namespace Lab.Utility.CsharpExperiment
 			var matches = rx.Matches(text);
 
 			// Report the number of matches found.
-			Console.WriteLine("{0} matches found in:\n   {1}",
-							  matches.Count,
-							  text);
+			Console.WriteLine("{0} matches found in:\n   {1}", matches.Count, text);
 
 			// Report on each match.
 			foreach (Match match in matches)
 			{
 				var groups = match.Groups;
-				Console.WriteLine("'{0}' repeated at positions {1} and {2}",
-								  groups["word"].Value,
-								  groups[0].Index,
-								  groups[1].Index);
+				Console.WriteLine(
+					"'{0}' repeated at positions {1} and {2}",
+					groups["word"].Value,
+					groups[0].Index,
+					groups[1].Index);
 			}
 		}
 
 		public static void GetCaptureGroup()
-        {
+		{
 			var rx = new Regex(@"(?:!=ENC=!).+(?:!=IV=!)(.+)");
 			var match = rx.Match("!=ENC=!adasdas==!=IV=!asdasfv==");
-			
+
 			var group = match.Groups;
 			Console.WriteLine(group[1].Value);
 		}
 
 
 		public static void FindTableName()
-        {
+		{
 			var rx = new Regex(@"(?:INSERT|UPDATE)[\s\r\n\t]+([^\s\r\n\t].+_.+[^\s])");
 			var matches = rx.Matches(SqlStmt);
-			foreach(Match match in matches)
-            {
-				var groups = match.Groups;		
+			foreach (Match match in matches)
+			{
+				var groups = match.Groups;
 			}
 		}
 
-		public static string GenerateRandomString(int length)
+		public string GenerateRandomString(Random random ,int length)
 		{
-			var random = new Random();
-			const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+			const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 			return new string(Enumerable.Repeat(chars, length)
-			  .Select(s => s[random.Next(s.Length)]).ToArray());
+				.Select(s => s[random.Next(s.Length)])
+				.ToArray());
 		}
 
-		public static string SqlStmt 
-		{ 
-			get { 
-					return @"INSERT  t_Product
+		public static string SqlStmt
+		{
+			get
+			{
+				return @"INSERT  t_Product
 									(
 										order_id,
 										shop_id,
@@ -217,14 +227,13 @@ namespace Lab.Utility.CsharpExperiment
 										@shop_id,
 										@product_id,
 										@variation_id
-									)"; 
-			} 
+									)";
+			}
 		}
+
 		public static void TryAddRange()
 		{
-			string[] input = { "Brachiosaurus",
-						   "Amargasaurus",
-						   "Mamenchisaurus" };
+			string[] input = { "Brachiosaurus", "Amargasaurus", "Mamenchisaurus" };
 
 			List<string> dinosaurs = new List<string>(input);
 
@@ -254,9 +263,7 @@ namespace Lab.Utility.CsharpExperiment
 				Console.WriteLine(dinosaur);
 			}
 
-			input = new string[] { "Tyrannosaurus",
-							   "Deinonychus",
-							   "Velociraptor"};
+			input = new string[] { "Tyrannosaurus", "Deinonychus", "Velociraptor" };
 
 			Console.WriteLine("\nInsertRange(3, input)");
 			dinosaurs.InsertRange(3, input);
@@ -304,7 +311,8 @@ namespace Lab.Utility.CsharpExperiment
 			var item = new Item();
 		}
 
-		public static void DoubtSkip(){
+		public static void DoubtSkip()
+		{
 			var list = Enumerable.Range(0, 10);
 			foreach (var i in Enumerable.Range(0, 1000))
 			{
@@ -313,6 +321,7 @@ namespace Lab.Utility.CsharpExperiment
 				Console.WriteLine(string.Join(" ", s));
 			}
 		}
+
 		static string Aaa()
 		{
 			var strs = new[] { "1234", "123", "12" };
@@ -327,8 +336,10 @@ namespace Lab.Utility.CsharpExperiment
 					if (string.IsNullOrEmpty(prefix)) return "";
 				}
 			}
+
 			return prefix;
 		}
+
 		public static void ParseTest()
 		{
 			var num = 101 / 100;
@@ -342,7 +353,9 @@ namespace Lab.Utility.CsharpExperiment
 		{
 			var list = new List<string>()
 			{
-				"a", "b", "c",
+				"a",
+				"b",
+				"c",
 			};
 
 			var newarray = new string[3];
@@ -359,6 +372,7 @@ namespace Lab.Utility.CsharpExperiment
 	{
 		public Point Location { get; set; }
 	}
+
 	public struct Point
 	{
 		public int X { get; set; }

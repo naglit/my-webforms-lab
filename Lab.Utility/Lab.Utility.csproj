@@ -87,6 +87,7 @@
     <Compile Include="MyRestApi\ApiService.cs" />
     <Compile Include="MyXmlSerialization\XmlDeserialization.cs" />
     <Compile Include="MyXmlSerialization\XmlSerialization.cs" />
+    <Compile Include="PerformanceTesting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reader\CsvReader.cs" />
     <Compile Include="MyMultithreading\ConcurrencyTutorial.cs" />
