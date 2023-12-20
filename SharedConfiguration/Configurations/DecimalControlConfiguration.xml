@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<DecimalControlConfiguration>
+	<Variables>
+		<!-- aaa -->
+		<Variable name="UnitPrice" fractionalDigits="2" roundingType="0"/>
+		<Variable name="UnitCost" fractionalDigits="1" roundingType="0"/>
+		<Variable name="Weight" fractionalDigits="1" roundingType="1"/>
+		<Variable name="Quantity" fractionalDigits="1" roundingType="0"/>
+	</Variables>
+</DecimalControlConfiguration>

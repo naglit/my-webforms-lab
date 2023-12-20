@@ -60,6 +60,12 @@
   <ItemGroup>
     <Compile Include="Asynchronous.cs" />
     <Compile Include="Bitwise.cs" />
+    <Compile Include="SharedConfigurations\DecimalControlConfiguration.cs" />
+    <Compile Include="SharedConfigurations\ISharedConfigurationRepository.cs" />
+    <Compile Include="SharedConfigurations\SharedConfigurationContainer.cs" />
+    <Compile Include="SharedConfigurations\SharedConfigurationService.cs" />
+    <Compile Include="SharedConfigurations\temp.cs" />
+    <Compile Include="SharedConfigurations\SharedConfigurationRepository.cs" />
     <Compile Include="MyAsync\Asynchronous.cs" />
     <Compile Include="MyConfiguration\EncryptionSetting.cs" />
     <Compile Include="MyConfiguration\SensitiveDataColumnsSetting.cs" />
@@ -85,6 +91,7 @@
     <Compile Include="MyModel\SampleReadDataModel.cs" />
     <Compile Include="MyMultithreading\Multithreading.cs" />
     <Compile Include="MyRestApi\ApiService.cs" />
+    <Compile Include="SharedConfigurations\DecimalControlConfigurationDto.cs" />
     <Compile Include="MyXmlSerialization\XmlDeserialization.cs" />
     <Compile Include="MyXmlSerialization\XmlSerialization.cs" />
     <Compile Include="PerformanceTesting.cs" />
