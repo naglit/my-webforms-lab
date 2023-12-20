@@ -1,5 +1,4 @@
 ﻿using Lab.Utility.MyXmlSerialization;
-using Lab.Utility.Reader;
 using Lab.Utility.SharedConfigurations;
 using System;
 using System.IO;
@@ -20,12 +19,27 @@ namespace Lab.Utility.Configurations
         /// <returns>Deserialized Configuration Object</returns>
         public DecimalControlConfiguration GetDecimalControlConfiguration()
         {
-            var dto = XmlDeserializationTest.Deserialize<DecimalControlConfigurationDto>(
+            DecimalControlConfigurationDto dto;
+            DateTime lastUpdated;
+            try
+            {
+                dto = XmlDeserializationTest.Deserialize<DecimalControlConfigurationDto>(
                 DECIMAL_CONTROL_CONFIGURATION_FILEPATH);
-            var result = new DecimalControlConfiguration(dto);
+                lastUpdated = GetFileLastUpdatedDateTime();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            var result = new DecimalControlConfiguration(dto, lastUpdated);
             return result;
+
         }
 
+        /// <summary>
+        /// Get the last updated datetime of the physical xml file, not cache.
+        /// </summary>
+        /// <returns></returns>
         public DateTime GetFileLastUpdatedDateTime()
         {
             try
@@ -34,9 +48,9 @@ namespace Lab.Utility.Configurations
                 var lastUpdated = fileInfo.LastWriteTime;
                 return lastUpdated;
             }
-            catch
+            catch (Exception ex)
             {
-                throw new Exception();
+                throw ex;
             }
         }
     }

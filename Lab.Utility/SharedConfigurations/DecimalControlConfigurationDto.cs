@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace Lab.Utility.MyXmlSerialization
+namespace Lab.Utility.SharedConfigurations
 {
     [Serializable, XmlRoot("DecimalControlConfiguration")]
     public class DecimalControlConfigurationDto

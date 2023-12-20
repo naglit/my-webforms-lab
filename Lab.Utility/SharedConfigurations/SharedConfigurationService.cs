@@ -1,42 +1,44 @@
 ﻿
-using Lab.Utility.MyXmlSerialization;
-using Lab.Utility.Reader;
 using System;
 
 namespace Lab.Utility.SharedConfigurations
 {
     internal class SharedConfigurationService
     {
-        
         private ISharedConfigurationRepository _sharedConfigurationRepository;
-
-        //private static (DecimalControlConfiguration, DateTime) s_decimalControlConfiguration;
 
         public SharedConfigurationService(ISharedConfigurationRepository sharedConfigurationRepository)
         {
             _sharedConfigurationRepository = sharedConfigurationRepository;
         }
 
-        public DecimalControlConfiguration StoreDecimalControlConfiguration()
+        public DecimalControlConfiguration GetLatestDecimalControlConfiguration()
         {
-            lock ()
+            // Reload if this is the first time to read.
+            Func<DecimalControlConfiguration> reloadFunc = new Func<DecimalControlConfiguration>(() =>
             {
-                // Check if this is the first time to read.
-                var config = SharedConfigurationContainer.Get();
-                var isFirstTimeToRead = (config == null);
-
-                // Check if the config file has been updated
-                var fileLastUpdated = _sharedConfigurationRepository.GetFileLastUpdatedDateTime();
-                var hasBeenUpdated = config.AAA(fileLastUpdated);
-                var needsConfigUpdate = isFirstTimeToRead || hasBeenUpdated;
-                if (needsConfigUpdate == false) return config;
-
-                // Get the latest config values from the xml config file.
-                var result = _sharedConfigurationRepository.GetDecimalControlConfiguration();
-                SharedConfigurationContainer.Store()= result, fileLastUpdated);
-                return s_decimalControlConfiguration.Item1;
+                var config = _sharedConfigurationRepository.GetDecimalControlConfiguration();
+                SharedConfigurationCache<DecimalControlConfiguration>.Store(config);
+                return config;
+            });
+            var isFirstTimeToRead = SharedConfigurationCache<DecimalControlConfiguration>.IsFirstTimeToRead();
+            if (isFirstTimeToRead)
+            {
+                var result = reloadFunc.Invoke();
+                return result;
             }
 
+            // Reload if the config file has been updated
+            var fileLastUpdated = _sharedConfigurationRepository.GetFileLastUpdatedDateTime();
+            var hasBeenUpdated = SharedConfigurationCache<DecimalControlConfiguration>.HasBeenUpdated(fileLastUpdated);
+            if (hasBeenUpdated)
+            {
+                var result = reloadFunc.Invoke();
+                return result;
+            }
+
+            // Get the latest config values from the xml config file.
+            return SharedConfigurationCache<DecimalControlConfiguration>.Get();
         }
     }
 }

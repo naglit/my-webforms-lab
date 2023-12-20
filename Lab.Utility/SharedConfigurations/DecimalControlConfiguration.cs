@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting;
-using System.Xml.Serialization;
 
-namespace Lab.Utility.MyXmlSerialization
+namespace Lab.Utility.SharedConfigurations
 {
-    public class DecimalControlConfiguration
+    public class DecimalControlConfiguration : ISharedConfiguration
     {
-        public DecimalControlConfiguration(DecimalControlConfigurationDto dto)
+        public DecimalControlConfiguration(DecimalControlConfigurationDto dto, DateTime lastUpdated)
         {
             this.Variables = new DecimalControlConfigurationVariableList(dto.Variables.Variables);
+            this.LastUpdated = lastUpdated;
         }
 
-        public bool AAA(DateTime fileLastUpdated)
-        {
-            var hasBeenUpdated = this.LastUpdated < fileLastUpdated;
-            if (needsConfigUpdate == false) return s_decimalControlConfiguration.Item1;
-        }
         public DecimalControlConfigurationVariableList Variables { get; set; }
         public DateTime LastUpdated { get; set; }
     }
