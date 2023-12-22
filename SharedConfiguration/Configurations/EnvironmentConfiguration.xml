@@ -1,4 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Configurations>
-	<SharedConfigurationProjectRootPath value="C:\Users\nitoga\Documents\GitHub\my-webforms-lab\SharedConfiguration\DecimalControlConfiguration.xml"/>
-</Configurations>
+<EnvironmentConfiguration>
+	<envconfig key="DecimalControlConfigurationFilePath" value=""/>
+</EnvironmentConfiguration>

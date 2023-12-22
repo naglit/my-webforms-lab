@@ -1,9 +1,5 @@
-﻿
-using Lab.Utility.MyCsharp;
-using Lab.Utility.MyCustomAttribute;
-using Lab.Utility.MyXmlSerialization;
+﻿using Lab.Utility.MyXmlSerialization;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -15,12 +11,12 @@ namespace Lab.Utility.SharedConfigurations
     /// <remarks>
     /// This class acts like "Repository" class
     /// </remarks>
-    public class DecimalControlConfiguration : IDecimalControlConfiguration
+    public class EnvironmentConfiguration : IEnvironmentConfiguration
     {
         /// <summary>Decimal Control Configuration file path</summary>
-        private static string CONFIG_KEY = "DecimalControlConfigurationFilePath";
+        private const string s_SharedConfigurationFilepath = @"C:\Users\nitoga\Documents\GitHub\my-webforms-lab\SharedConfiguration\Configurations\EnvironmentConfiguration.xml";
         /// <summary>The configuration instance for singleton pattern</summary>
-        private static DecimalControlConfiguration s_instance = Nested.s_instance;
+        private static EnvironmentConfiguration s_instance = Nested.s_instance;
         /// <summary>object for thread safe processing</summary>
         private static readonly object s_lock = new object();
 
@@ -32,9 +28,9 @@ namespace Lab.Utility.SharedConfigurations
         /// <remarks>
         /// This constractor must be private so that only the inner class can instantiate, which means the program consistenly has one instance.
         /// </remarks>
-        private DecimalControlConfiguration(DecimalControlConfigurationDto dto, DateTime lastUpdated)
+        private EnvironmentConfiguration(EnvironmentConfigurationDto dto, DateTime lastUpdated)
         {
-            this.Variables = new DecimalControlConfigurationVariableList(dto.Variables.Variables);
+            this.Values = new EnvironmentConfigurationList(dto);
             this.LastUpdated = lastUpdated;
         }
 
@@ -42,10 +38,10 @@ namespace Lab.Utility.SharedConfigurations
         /// Get the latest config values from the xml config file.
         /// </summary>
         /// <returns>Deserialized Configuration Object</returns>
-        public static DecimalControlConfiguration Get()
+        public static EnvironmentConfiguration Get()
         {
             // Reload if this is the first time to read.
-            Func<DecimalControlConfiguration> reloadFunc = new Func<DecimalControlConfiguration>(() =>
+            Func<EnvironmentConfiguration> reloadFunc = new Func<EnvironmentConfiguration>(() =>
             {
                 var config = DeserializeConfigXml();
                 Store(config);
@@ -76,26 +72,25 @@ namespace Lab.Utility.SharedConfigurations
         /// </summary>
         public static bool IsFirstTimeToRead() => s_instance == null;
 
-        private static DecimalControlConfiguration DeserializeConfigXml()
+        private static EnvironmentConfiguration DeserializeConfigXml()
         {
-            DecimalControlConfigurationDto dto;
+            EnvironmentConfigurationDto dto;
             DateTime lastUpdated;
             try
             {
-                var path = EnvironmentConfiguration.Get().Values.GetByKey(CONFIG_KEY)?.Value;
-                dto = XmlDeserializationTest.Deserialize<DecimalControlConfigurationDto>(
-                    path);
+                dto = XmlDeserializationTest.Deserialize<EnvironmentConfigurationDto>(
+                    s_SharedConfigurationFilepath);
                 lastUpdated = GetFileLastUpdatedDateTime();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            var result = new DecimalControlConfiguration(dto, lastUpdated);
+            var result = new EnvironmentConfiguration(dto, lastUpdated);
             return result;
         }
 
-        private static void Store(DecimalControlConfiguration config)
+        private static void Store(EnvironmentConfiguration config)
         {
             lock (s_lock)
             {
@@ -110,8 +105,7 @@ namespace Lab.Utility.SharedConfigurations
         {
             try
             {
-                var path = EnvironmentConfiguration.Get().Values.GetByKey(CONFIG_KEY)?.Value;
-                var fileInfo = new FileInfo(path);
+                var fileInfo = new FileInfo(s_SharedConfigurationFilepath);
                 var lastUpdated = fileInfo.LastWriteTime;
                 return lastUpdated;
             }
@@ -127,7 +121,7 @@ namespace Lab.Utility.SharedConfigurations
         /// <param name="fileLastUpdated">The lastest date and time that THE PHYSICAL XML FILE is updated, not this instance.</param>
         public bool NeedsToUpdate(DateTime fileLastUpdated) => this.LastUpdated < fileLastUpdated;
 
-        public DecimalControlConfigurationVariableList Variables { get; }
+        public EnvironmentConfigurationList Values { get; }
         private DateTime LastUpdated { get; }
 
         #region Nested class for singleton
@@ -136,7 +130,7 @@ namespace Lab.Utility.SharedConfigurations
         /// </summary>
         private class Nested
         {
-            internal static readonly DecimalControlConfiguration s_instance;
+            internal static readonly EnvironmentConfiguration s_instance;
 
             static Nested()
             {
@@ -145,47 +139,34 @@ namespace Lab.Utility.SharedConfigurations
         #endregion
     }
 
-    public class DecimalControlConfigurationVariableList
+    public class EnvironmentConfigurationList
     {
-        public DecimalControlConfigurationVariableList(ICollection<VariableDto> variableDtos)
+        public EnvironmentConfigurationList(EnvironmentConfigurationDto dto)
         {
-            this.Variables = variableDtos.Select(v => new DecimalControlConfigurationVariable(v)).ToArray();
+            this.Variables = dto.Values.Select(v => new EnvironmentConfigurationValue(v)).ToArray();
         }
 
-        public DecimalControlConfigurationVariable[] GetAll() => this.Variables;
+        public EnvironmentConfigurationValue[] GetAll() => this.Variables;
 
-        public DecimalControlConfigurationVariable GetByName(string name)
+        public EnvironmentConfigurationValue GetByKey(string key)
         {
-            var result = this.Variables.FirstOrDefault(v => v.Name == name);
+            var result = this.Variables.FirstOrDefault(v => v.Key == key);
             return result;
         }
 
-        private DecimalControlConfigurationVariable[] Variables { get; }
+        private EnvironmentConfigurationValue[] Variables { get; }
     }
 
-    public class DecimalControlConfigurationVariable
+    public class EnvironmentConfigurationValue
     {
-        public DecimalControlConfigurationVariable(VariableDto v)
+        public EnvironmentConfigurationValue(EnvironmentConfigurationValueDto v)
         {
-            this.Name = v.Name;
-            this.FractionalDigits = v.FractionalDigits;
-            this.RoundingType = EnumHelper<DecimalRoundingType>.Parse(v.RoundingType);
+            this.Key = v.Key;
+            this.Value = v.Value;
         }
 
-        public string Name { get; }
+        public string Key { get; }
 
-        public int FractionalDigits { get; }
-
-        public DecimalRoundingType RoundingType { get; }
-    }
-
-    public enum DecimalRoundingType
-    {
-        [ResourceValue("0")]
-        Floor,
-        [ResourceValue("1")]
-        Round,
-        [ResourceValue("2")]
-        Ceiling,
+        public string Value { get; }
     }
 }

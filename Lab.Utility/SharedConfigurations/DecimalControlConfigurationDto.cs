@@ -14,7 +14,7 @@ namespace Lab.Utility.SharedConfigurations
     public class VariableDtoList
     {
         [XmlElement("Variable")]
-        public List<VariableDto> Variables { get; set; }
+        public VariableDto[] Variables { get; set; }
     }
 
     public class VariableDto
