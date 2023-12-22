@@ -13,16 +13,17 @@ namespace Lab.Utility.MyMultithreading
 		private static async Task CalledMethod()
 		{
 			Console.WriteLine("1. CalledMethod has just run.");
-			var message = await Wait();
-			Console.WriteLine("3. Continue the execution of CalledMethod.");
-			Console.WriteLine($"4. {message}");
+			var waitTask = Wait();
+			Console.WriteLine("3. Continue the execution of CalledMethod beside Wait().");
+			var msg = await waitTask;
+			Console.WriteLine($"{msg}");
 		}
 
 		private static async Task<string> Wait()
 		{
 			Console.WriteLine("2. Wait 5 seconds");
 			await Task.Delay(5000);
-			return "Done.";
+			return "4. Done.";
 		}
 	}
 }
