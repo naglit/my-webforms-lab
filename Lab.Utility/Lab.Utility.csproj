@@ -63,7 +63,7 @@
     <Compile Include="MyCsharp\EnumHelper.cs" />
     <Compile Include="MyCustomAttribute\ResourceValueAttribute.cs" />
     <Compile Include="SharedConfigurations\DecimalControlConfiguration.cs" />
-    <Compile Include="SharedConfigurations\IConfiguration.cs" />
+    <Compile Include="SharedConfigurations\IDecimalControlConfiguration.cs" />
     <Compile Include="SharedConfigurations\temp.cs" />
     <Compile Include="MyAsync\Asynchronous.cs" />
     <Compile Include="MyConfiguration\EncryptionSetting.cs" />

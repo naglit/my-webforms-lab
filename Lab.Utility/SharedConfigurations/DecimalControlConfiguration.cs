@@ -15,7 +15,7 @@ namespace Lab.Utility.SharedConfigurations
     /// <remarks>
     /// This class acts like "Repository" class
     /// </remarks>
-    public class DecimalControlConfiguration : IConfiguration
+    public class DecimalControlConfiguration : IDecimalControlConfiguration
     {
         /// <summary>Decimal Control Configuration file path</summary>
         private const string DECIMAL_CONTROL_CONFIGURATION_FILEPATH = @"C:\Users\nitoga\Documents\GitHub\my-webforms-lab\SharedConfiguration\Configurations\DecimalControlConfiguration.xml";

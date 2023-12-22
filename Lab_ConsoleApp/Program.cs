@@ -1,12 +1,17 @@
 using System;
 using Lab.Utility.MyXmlSerialization;
+using Lab.Utility.SharedConfigurations;
 namespace Lab_ConsoleApp
 {
 	class Program
 	{
 		static void Main(string[] args)
 		{
-            XmlDeserialization.Deserialize();
+			var result = DecimalControlConfiguration.Get();
+			foreach (var v in result.Variables.GetAll())
+			{
+				Console.WriteLine($"{v.Name},{v.RoundingType},{v.FractionalDigits}");
+			}
             Console.ReadLine();
         }
 	}
