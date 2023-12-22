@@ -61,10 +61,9 @@
     <Compile Include="Asynchronous.cs" />
     <Compile Include="Bitwise.cs" />
     <Compile Include="SharedConfigurations\DecimalControlConfiguration.cs" />
-    <Compile Include="SharedConfigurations\SharedConfiguration.cs" />
+    <Compile Include="SharedConfigurations\ISharedConfiguration.cs" />
     <Compile Include="SharedConfigurations\ISharedConfigurationRepository.cs" />
     <Compile Include="SharedConfigurations\DecimalControlConfigurationCache.cs" />
-    <Compile Include="SharedConfigurations\SharedConfigurationCache.cs" />
     <Compile Include="SharedConfigurations\SharedConfigurationService.cs" />
     <Compile Include="SharedConfigurations\temp.cs" />
     <Compile Include="SharedConfigurations\SharedConfigurationRepository.cs" />
