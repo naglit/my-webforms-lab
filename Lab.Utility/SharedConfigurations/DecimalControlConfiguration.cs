@@ -1,4 +1,6 @@
 ﻿
+using Lab.Utility.MyCsharp;
+using Lab.Utility.MyCustomAttribute;
 using Lab.Utility.MyXmlSerialization;
 using System;
 using System.Collections.Generic;
@@ -7,6 +9,12 @@ using System.Linq;
 
 namespace Lab.Utility.SharedConfigurations
 {
+    /// <summary>
+    /// A configuration class that reads and stores configuration values like # of valid digits in a configuration xml file.
+    /// </summary>
+    /// <remarks>
+    /// This class acts like "Repository" class
+    /// </remarks>
     public class DecimalControlConfiguration : IDecimalControlConfiguration
     {
         /// <summary>Decimal Control Configuration file path</summary>
@@ -118,7 +126,7 @@ namespace Lab.Utility.SharedConfigurations
         /// <param name="fileLastUpdated">The lastest date and time that THE PHYSICAL XML FILE is updated, not this instance.</param>
         public bool NeedsToUpdate(DateTime fileLastUpdated) => this.LastUpdated < fileLastUpdated;
 
-        internal DecimalControlConfigurationVariableList Variables { get; }
+        public DecimalControlConfigurationVariableList Variables { get; }
         private DateTime LastUpdated { get; }
 
         /// <summary>
@@ -134,38 +142,45 @@ namespace Lab.Utility.SharedConfigurations
         }
     }
 
-    internal class DecimalControlConfigurationVariableList
+    public class DecimalControlConfigurationVariableList
     {
         public DecimalControlConfigurationVariableList(ICollection<VariableDto> variableDtos)
         {
             this.Variables = variableDtos.Select(v => new DecimalControlConfigurationVariable(v)).ToArray();
         }
 
-        public DecimalControlConfigurationVariable[] Variables { get; }
+        public DecimalControlConfigurationVariable GetByName(string name)
+        {
+            var result = this.Variables.FirstOrDefault(v => v.Name == name);
+            return result;
+        }
+
+        private DecimalControlConfigurationVariable[] Variables { get; }
     }
 
-    internal class DecimalControlConfigurationVariable
+    public class DecimalControlConfigurationVariable
     {
         public DecimalControlConfigurationVariable(VariableDto v)
         {
             this.Name = v.Name;
             this.FractionalDigits = v.FractionalDigits;
-            this.RoundingType = v.RoundingType;
+            this.RoundingType = EnumHelper<DecimalRoundingType>.Parse(v.RoundingType);
         }
-
-
 
         public string Name { get; }
 
         public int FractionalDigits { get; }
 
-        public int RoundingType { get; }
+        public DecimalRoundingType RoundingType { get; }
     }
 
-    public enum RoundingType
+    public enum DecimalRoundingType
     {
-        Floor = 0,
-        Round = 1,
-        Ceiling = 2,
+        [ResourceValue("0")]
+        Floor,
+        [ResourceValue("1")]
+        Round,
+        [ResourceValue("2")]
+        Ceiling,
     }
 }

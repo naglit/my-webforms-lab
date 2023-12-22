@@ -17,7 +17,6 @@ namespace Lab.Utility.MyXmlSerialization
 			{
 				var resultSet = new XmlSerializer(typeof(ResultSetA)).Deserialize(xmlReader);
 			}
-				
 		}
 	}
 	[Serializable]

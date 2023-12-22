@@ -26,6 +26,6 @@ namespace Lab.Utility.SharedConfigurations
         public int FractionalDigits { get; set; }
 
         [XmlAttribute("roundingType")]
-        public int RoundingType { get; set; }
+        public string RoundingType { get; set; }
     }
 }

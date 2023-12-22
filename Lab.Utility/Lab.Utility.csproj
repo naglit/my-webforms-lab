@@ -60,13 +60,11 @@
   <ItemGroup>
     <Compile Include="Asynchronous.cs" />
     <Compile Include="Bitwise.cs" />
+    <Compile Include="MyCsharp\EnumHelper.cs" />
+    <Compile Include="MyCustomAttribute\ResourceValueAttribute.cs" />
     <Compile Include="SharedConfigurations\DecimalControlConfiguration.cs" />
-    <Compile Include="SharedConfigurations\ISharedConfiguration.cs" />
-    <Compile Include="SharedConfigurations\ISharedConfigurationRepository.cs" />
-    <Compile Include="SharedConfigurations\DecimalControlConfigurationCache.cs" />
-    <Compile Include="SharedConfigurations\SharedConfigurationService.cs" />
+    <Compile Include="SharedConfigurations\IDecimalControlConfiguration.cs" />
     <Compile Include="SharedConfigurations\temp.cs" />
-    <Compile Include="SharedConfigurations\SharedConfigurationRepository.cs" />
     <Compile Include="MyAsync\Asynchronous.cs" />
     <Compile Include="MyConfiguration\EncryptionSetting.cs" />
     <Compile Include="MyConfiguration\SensitiveDataColumnsSetting.cs" />
