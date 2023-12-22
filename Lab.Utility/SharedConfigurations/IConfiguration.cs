@@ -1,7 +1,7 @@
 ﻿
 namespace Lab.Utility.SharedConfigurations
 {
-    public interface IDecimalControlConfiguration
+    public interface IConfiguration
     {
     }
 }

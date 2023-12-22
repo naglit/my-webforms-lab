@@ -15,10 +15,10 @@ namespace Lab.Utility.SharedConfigurations
     /// <remarks>
     /// This class acts like "Repository" class
     /// </remarks>
-    public class DecimalControlConfiguration : IDecimalControlConfiguration
+    public class DecimalControlConfiguration : IConfiguration
     {
         /// <summary>Decimal Control Configuration file path</summary>
-        private const string DECIMAL_CONTROL_CONFIGURATION_FILEPATH = "";
+        private const string DECIMAL_CONTROL_CONFIGURATION_FILEPATH = @"C:\Users\nitoga\Documents\GitHub\my-webforms-lab\SharedConfiguration\Configurations\DecimalControlConfiguration.xml";
         /// <summary>The configuration instance for singleton pattern</summary>
         private static DecimalControlConfiguration s_instance = Nested.s_instance;
         /// <summary>object for thread safe processing</summary>
@@ -83,7 +83,7 @@ namespace Lab.Utility.SharedConfigurations
             try
             {
                 dto = XmlDeserializationTest.Deserialize<DecimalControlConfigurationDto>(
-                DECIMAL_CONTROL_CONFIGURATION_FILEPATH);
+                    DECIMAL_CONTROL_CONFIGURATION_FILEPATH);
                 lastUpdated = GetFileLastUpdatedDateTime();
             }
             catch (Exception ex)
@@ -105,7 +105,6 @@ namespace Lab.Utility.SharedConfigurations
         /// <summary>
         /// Get the last updated datetime of the physical xml file, not cache.
         /// </summary>
-        /// <returns></returns>
         public static DateTime GetFileLastUpdatedDateTime()
         {
             try
@@ -129,6 +128,7 @@ namespace Lab.Utility.SharedConfigurations
         public DecimalControlConfigurationVariableList Variables { get; }
         private DateTime LastUpdated { get; }
 
+        #region Nested class for singleton
         /// <summary>
         /// The class for singleton
         /// </summary>
@@ -140,6 +140,7 @@ namespace Lab.Utility.SharedConfigurations
             {
             }
         }
+        #endregion
     }
 
     public class DecimalControlConfigurationVariableList
@@ -148,6 +149,8 @@ namespace Lab.Utility.SharedConfigurations
         {
             this.Variables = variableDtos.Select(v => new DecimalControlConfigurationVariable(v)).ToArray();
         }
+
+        public DecimalControlConfigurationVariable[] GetAll() => this.Variables;
 
         public DecimalControlConfigurationVariable GetByName(string name)
         {
