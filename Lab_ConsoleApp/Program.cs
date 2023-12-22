@@ -10,7 +10,7 @@ namespace Lab_ConsoleApp
 			var result = DecimalControlConfiguration.Get();
 			foreach (var v in result.Variables.GetAll())
 			{
-				Console.WriteLine($"{v.Name},{v.RoundingType},{v.FractionalDigits}");
+				Console.WriteLine($"{v.Name}: {v.RoundingType}");
 			}
             Console.ReadLine();
         }
